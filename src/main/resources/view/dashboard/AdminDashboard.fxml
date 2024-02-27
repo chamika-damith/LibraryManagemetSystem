@@ -9,75 +9,7 @@
 
 <AnchorPane prefHeight="820.0" prefWidth="1530.0" style="-fx-background-color: FFFEFE;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AdminDashboardController">
    <children>
-      <AnchorPane layoutX="223.0" layoutY="76.0" prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #F5F7FB;">
-         <children>
-            <Label layoutX="26.0" layoutY="11.0" prefHeight="34.0" prefWidth="237.0" text="Welcome to Dashboard" textFill="#3e3c3c">
-               <font>
-                  <Font name="Arial" size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="28.0" layoutY="45.0" prefHeight="14.0" prefWidth="86.0" text="Admin / Dashboard" textFill="#aeabab">
-               <font>
-                  <Font name="System Bold" size="9.0" />
-               </font>
-            </Label>
-            <AnchorPane layoutX="45.0" layoutY="90.0" prefHeight="108.0" prefWidth="279.0" style="-fx-background-color: FFFFFF;">
-               <children>
-                  <Label layoutX="166.0" layoutY="28.0" text="Total Users" textFill="#67696e">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="206.0" layoutY="48.0" prefHeight="34.0" prefWidth="39.0" text="10">
-                     <font>
-                        <Font name="System Bold" size="30.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="358.0" layoutY="90.0" prefHeight="108.0" prefWidth="279.0" style="-fx-background-color: FFFFFF;">
-               <children>
-                  <Label layoutX="166.0" layoutY="28.0" text="Total Users" textFill="#67696e">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="206.0" layoutY="48.0" prefHeight="34.0" prefWidth="39.0" text="10">
-                     <font>
-                        <Font name="System Bold" size="30.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="674.0" layoutY="90.0" prefHeight="108.0" prefWidth="279.0" style="-fx-background-color: FFFFFF;">
-               <children>
-                  <Label layoutX="166.0" layoutY="28.0" text="Total Users" textFill="#67696e">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="206.0" layoutY="48.0" prefHeight="34.0" prefWidth="39.0" text="10">
-                     <font>
-                        <Font name="System Bold" size="30.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="987.0" layoutY="90.0" prefHeight="108.0" prefWidth="279.0" style="-fx-background-color: FFFFFF;">
-               <children>
-                  <Label layoutX="166.0" layoutY="28.0" text="Total Users" textFill="#67696e">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="206.0" layoutY="48.0" prefHeight="34.0" prefWidth="39.0" text="10">
-                     <font>
-                        <Font name="System Bold" size="30.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-         </children></AnchorPane>
+      <AnchorPane layoutX="223.0" layoutY="76.0" prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #F5F7FB;" />
       <Label layoutX="29.0" layoutY="16.0" prefHeight="34.0" prefWidth="131.0" text="BookWorm">
          <font>
             <Font name="Berlin Sans FB" size="25.0" />
@@ -85,7 +17,7 @@
       </Label>
       <Line endX="1264.4000244140625" endY="7.62939453125E-6" fill="BLACK" layoutX="265.0" layoutY="75.0" startX="-265.0" startY="7.62939453125E-6" stroke="#d7d4de" />
       <Line endX="157.0" endY="807.199951171875" fill="BLACK" layoutX="66.0" layoutY="12.0" startX="157.30001831054688" startY="-12.000001907348633" stroke="#d7d4de" />
-      <JFXButton fx:id="btnDashboardOnAction" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="32.0" layoutY="75.0" prefHeight="50.0" prefWidth="191.0" stylesheets="@../../style.css" text="Dashboard" textFill="#838a9c">
+      <JFXButton fx:id="btnDashboardOnAction" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="32.0" layoutY="75.0" onAction="#btndashboardOnAction" prefHeight="50.0" prefWidth="191.0" stylesheets="@../../style.css" text="Dashboard" textFill="#838a9c">
          <font>
             <Font name="Arial Rounded MT Bold" size="17.0" />
          </font>
@@ -93,7 +25,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton alignment="BASELINE_LEFT" layoutX="32.0" layoutY="126.0" prefHeight="50.0" prefWidth="191.0" stylesheets="@../../style.css" text="Books" textFill="#838a9c">
+      <JFXButton alignment="BASELINE_LEFT" layoutX="32.0" layoutY="126.0" onAction="#btnBookOnAction" prefHeight="50.0" prefWidth="191.0" stylesheets="@../../style.css" text="Books" textFill="#838a9c">
          <font>
             <Font name="Arial Rounded MT Bold" size="17.0" />
          </font>
@@ -101,7 +33,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton alignment="BASELINE_LEFT" layoutX="32.0" layoutY="177.0" prefHeight="50.0" prefWidth="191.0" stylesheets="@../../style.css" text="Users" textFill="#838a9c">
+      <JFXButton alignment="BASELINE_LEFT" layoutX="32.0" layoutY="177.0" onAction="#btnUserOnAction" prefHeight="50.0" prefWidth="191.0" stylesheets="@../../style.css" text="Users" textFill="#838a9c">
          <font>
             <Font name="Arial Rounded MT Bold" size="17.0" />
          </font>
