@@ -23,7 +23,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="731.0" layoutY="33.0" prefHeight="24.0" prefWidth="66.0" style="-fx-background-color: EDE9F0; -fx-border-color: #75a3b1; -fx-background-radius: 2; -fx-border-radius: 2;" text="Admin" textFill="#75a3b1">
+      <JFXButton fx:id="btnAdmin" layoutX="731.0" layoutY="33.0" onAction="#btnAdminLoginOnAction" prefHeight="24.0" prefWidth="66.0" style="-fx-background-color: EDE9F0; -fx-border-color: #75a3b1; -fx-background-radius: 2; -fx-border-radius: 2;" text="Admin" textFill="#75a3b1">
          <font>
             <Font name="System Bold" size="11.0" />
          </font>
