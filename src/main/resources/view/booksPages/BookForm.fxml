@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #F5F7FB;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.BookFormController">
+   <children>
+      <AnchorPane layoutX="44.0" layoutY="52.0" prefHeight="78.0" prefWidth="1232.0" style="-fx-background-color: FFFEFE;">
+         <children>
+            <JFXTextField fx:id="txtEmpId" focusColor="#0040ff" labelFloat="true" layoutX="27.0" layoutY="26.0" onAction="#lblSearchOnAction" prefHeight="26.0" prefWidth="218.0" promptText="Title" />
+            <JFXTextField fx:id="txtEmpId1" focusColor="#0040ff" labelFloat="true" layoutX="307.0" layoutY="27.0" onAction="#lblSearchOnAction" prefHeight="26.0" prefWidth="218.0" promptText="Author" />
+            <JFXTextField fx:id="txtEmpId11" focusColor="#0040ff" labelFloat="true" layoutX="590.0" layoutY="26.0" onAction="#lblSearchOnAction" prefHeight="26.0" prefWidth="218.0" promptText="Genre" />
+            <JFXComboBox layoutX="860.0" layoutY="27.0" prefHeight="26.0" prefWidth="218.0" promptText="Availability status" />
+            <JFXButton layoutX="1132.0" layoutY="27.0" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #5D9C59;" text="Add" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="bookTable" layoutX="44.0" layoutY="164.0" prefHeight="567.0" prefWidth="1232.0" stylesheets="@../../style/Table.css">
+        <columns>
+          <TableColumn prefWidth="353.60003662109375" text="Title" />
+            <TableColumn prefWidth="360.0" text="Author" />
+            <TableColumn prefWidth="168.79998779296875" text="Genre" />
+            <TableColumn prefWidth="142.39996337890625" text="Status" />
+            <TableColumn prefWidth="110.39996337890625" text="Update" />
+            <TableColumn prefWidth="100.0" text="Remove" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
