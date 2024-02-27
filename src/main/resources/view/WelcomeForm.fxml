@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="540.0" prefWidth="933.0" style="-fx-background-color: FEFEFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.WelcomeFormController">
+<AnchorPane prefHeight="514.0" prefWidth="933.0" style="-fx-background-color: FEFEFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.WelcomeFormController">
    <children>
       <ImageView fitHeight="484.0" fitWidth="518.0" layoutX="10.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -15,7 +15,7 @@
          </image>
       </ImageView>
       <AnchorPane fx:id="welcomeRoot" layoutX="490.0" layoutY="71.0" prefHeight="417.0" prefWidth="410.0" />
-      <JFXButton layoutX="593.0" layoutY="33.0" onAction="#btnUserLoginOnAction" prefHeight="24.0" prefWidth="66.0" style="-fx-background-color: EDE9F0; -fx-border-color: #75a3b1; -fx-background-radius: 2; -fx-border-radius: 2;" text="User" textFill="#75a3b1">
+      <JFXButton fx:id="btnUser" layoutX="593.0" layoutY="33.0" onAction="#btnUserLoginOnAction" prefHeight="24.0" prefWidth="66.0" style="-fx-background-color: EDE9F0; -fx-border-color: #75a3b1; -fx-background-radius: 2; -fx-border-radius: 2;" text="User" textFill="#75a3b1">
          <font>
             <Font name="System Bold" size="11.0" />
          </font>
