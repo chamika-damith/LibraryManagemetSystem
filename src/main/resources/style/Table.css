@@ -2,7 +2,7 @@
     -fx-background-radius: 15;
     -fx-background-color:  #FFFEFE;
     -fx-border-radius: 2;
-    -fx-border-color: transparent;
+    -fx-border-color: black;
 }
 
 .table-view .column-header-background{
