@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #F5F7FB;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.UserFormController">
+   <children>
+      <AnchorPane layoutX="54.0" layoutY="62.0" prefHeight="78.0" prefWidth="1232.0" style="-fx-background-color: FFFEFE;">
+         <children>
+            <JFXTextField fx:id="txtEmpId" focusColor="#0040ff" labelFloat="true" layoutX="27.0" layoutY="26.0" onAction="#lblSearchOnAction" prefHeight="26.0" prefWidth="218.0" promptText="UserId" />
+            <JFXTextField fx:id="txtEmpId1" focusColor="#0040ff" labelFloat="true" layoutX="307.0" layoutY="27.0" onAction="#lblSearchOnAction" prefHeight="26.0" prefWidth="218.0" promptText="Name" />
+            <JFXTextField fx:id="txtEmpId11" focusColor="#0040ff" labelFloat="true" layoutX="590.0" layoutY="26.0" onAction="#lblSearchOnAction" prefHeight="26.0" prefWidth="218.0" promptText="Email" />
+            <JFXButton layoutX="1132.0" layoutY="27.0" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #5D9C59;" text="Add" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXTextField fx:id="txtEmpId111" focusColor="#0040ff" labelFloat="true" layoutX="862.0" layoutY="26.0" onAction="#lblSearchOnAction" prefHeight="26.0" prefWidth="218.0" promptText="Password" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="bookTable" layoutX="54.0" layoutY="174.0" prefHeight="567.0" prefWidth="1232.0" stylesheets="@../../style/Table.css">
+         <columns>
+            <TableColumn prefWidth="89.60001373291016" text="UserId" />
+            <TableColumn prefWidth="433.59999084472656" text="Name" />
+            <TableColumn prefWidth="421.6000061035156" text="Email" />
+            <TableColumn prefWidth="155.99993896484375" text="Update" />
+            <TableColumn prefWidth="125.60009765625" text="Remove" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

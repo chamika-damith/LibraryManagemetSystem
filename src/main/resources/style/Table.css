@@ -16,13 +16,15 @@
 
 .table-view .column-header {
     -fx-background-color: transparent;
+    -fx-border-style: solid;
+    -fx-border-color: transparent transparent black transparent;
 }
 
 .table-view .table-cell{
     -fx-text-fill: black;
     -fx-alignment: center;
     -fx-background-color: transparent;
-    -fx-border-color: #d7d4de;
+    -fx-border-color: transparent transparent black transparent;
 }
 
 .table-row-cell:selected {
