@@ -44,5 +44,14 @@
       <Line endX="714.2000122070312" endY="38.399993896484375" fill="BLACK" layoutX="-491.0" layoutY="87.0" startX="491.0" startY="38.400001525878906" stroke="#d7d4de" />
       <Line endX="714.2000122070312" endY="38.399993896484375" fill="BLACK" layoutX="-491.0" layoutY="138.0" startX="491.0" startY="38.399993896484375" stroke="#d7d4de" />
       <Line endX="714.2000122070312" endY="38.399993896484375" fill="BLACK" layoutX="-491.0" layoutY="189.0" startX="491.0" startY="38.39997863769531" stroke="#d7d4de" />
+      <JFXButton alignment="BASELINE_LEFT" layoutX="32.0" layoutY="228.0" onAction="#btnUserOnAction" prefHeight="50.0" prefWidth="191.0" stylesheets="@../../style.css" text="Transaction" textFill="#838a9c">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Line endX="714.2000122070312" endY="38.399993896484375" fill="BLACK" layoutX="-490.0" layoutY="239.0" startX="491.0" startY="38.39997863769531" stroke="#d7d4de" />
    </children>
 </AnchorPane>
