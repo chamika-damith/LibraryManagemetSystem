@@ -14,7 +14,7 @@ public class WelcomeFormController {
     public JFXButton btnAdmin;
 
     public void initialize() throws IOException {
-        Parent parent=FXMLLoader.load(getClass().getResource("/view/loginPages/UserLoginForm.fxml"));
+        Parent parent=FXMLLoader.load(getClass().getResource("/view/user/loginPages/UserLoginForm.fxml"));
         welcomeRoot.getChildren().clear();
         welcomeRoot.getChildren().add(parent);
 
@@ -22,7 +22,7 @@ public class WelcomeFormController {
     }
 
     public void btnUserLoginOnAction(ActionEvent actionEvent) throws IOException {
-        Parent parent=FXMLLoader.load(getClass().getResource("/view/loginPages/UserLoginForm.fxml"));
+        Parent parent=FXMLLoader.load(getClass().getResource("/view/user/loginPages/UserLoginForm.fxml"));
         welcomeRoot.getChildren().clear();
         welcomeRoot.getChildren().add(parent);
 
@@ -31,7 +31,7 @@ public class WelcomeFormController {
     }
 
     public void btnAdminLoginOnAction(ActionEvent actionEvent) throws IOException {
-        Parent parent=FXMLLoader.load(getClass().getResource("/view/loginPages/AdminLoginForm.fxml"));
+        Parent parent=FXMLLoader.load(getClass().getResource("/view/Admin/loginPages/AdminLoginForm.fxml"));
         welcomeRoot.getChildren().clear();
         welcomeRoot.getChildren().add(parent);
 

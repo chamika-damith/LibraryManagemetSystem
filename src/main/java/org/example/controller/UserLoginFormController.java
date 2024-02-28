@@ -11,7 +11,7 @@ public class UserLoginFormController {
     public AnchorPane userLoginRoot;
 
     public void userRegisterOnAction(MouseEvent mouseEvent) throws IOException {
-        Parent parent= FXMLLoader.load(getClass().getResource("/view/loginPages/UserRegisterForm.fxml"));
+        Parent parent= FXMLLoader.load(getClass().getResource("/view/user/loginPages/UserRegisterForm.fxml"));
         userLoginRoot.getChildren().clear();
         userLoginRoot.getChildren().add(parent);
     }

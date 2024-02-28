@@ -22,7 +22,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <MFXTextField layoutX="42.0" layoutY="118.0" prefHeight="42.0" prefWidth="326.0" promptText="Enter name" style="-fx-background-color: #f2eff1;" stylesheets="@../../../../../../../StudioManagementSystem/src/main/resources/Style/textFields.css">
+      <MFXTextField layoutX="42.0" layoutY="118.0" prefHeight="42.0" prefWidth="326.0" promptText="Enter name" style="-fx-background-color: #f2eff1;" stylesheets="@../../../../../../../../StudioManagementSystem/src/main/resources/Style/textFields.css">
          <styleClass>
             <String fx:value="customField" />
             <String fx:value="mfx-text-field" />
@@ -52,7 +52,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </MFXButton>
-      <MFXTextField layoutX="42.0" layoutY="184.0" prefHeight="42.0" prefWidth="326.0" promptText="Enter email" style="-fx-background-color: #f2eff1;" stylesheets="@../../../../../../../StudioManagementSystem/src/main/resources/Style/textFields.css">
+      <MFXTextField layoutX="42.0" layoutY="184.0" prefHeight="42.0" prefWidth="326.0" promptText="Enter email" style="-fx-background-color: #f2eff1;" stylesheets="@../../../../../../../../StudioManagementSystem/src/main/resources/Style/textFields.css">
          <styleClass>
             <String fx:value="customField" />
             <String fx:value="mfx-text-field" />
@@ -61,7 +61,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </MFXTextField>
-      <MFXPasswordField layoutX="42.0" layoutY="252.0" prefHeight="46.0" prefWidth="326.0" promptText="Enter password" style="-fx-background-color: #f2eff1;" stylesheets="@../../../../../../../StudioManagementSystem/src/main/resources/Style/textFields.css">
+      <MFXPasswordField layoutX="42.0" layoutY="252.0" prefHeight="46.0" prefWidth="326.0" promptText="Enter password" style="-fx-background-color: #f2eff1;" stylesheets="@../../../../../../../../StudioManagementSystem/src/main/resources/Style/textFields.css">
          <styleClass>
             <String fx:value="customPassword" />
             <String fx:value="mfx-text-field" />
