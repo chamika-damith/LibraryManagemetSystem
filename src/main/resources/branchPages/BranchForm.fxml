@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #F5F7FB;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.BranchFormController">
+   <children>
+      <AnchorPane layoutX="54.0" layoutY="62.0" prefHeight="78.0" prefWidth="1232.0" style="-fx-background-color: FFFEFE;">
+         <children>
+            <JFXTextField fx:id="txtEmpId" focusColor="#0040ff" labelFloat="true" layoutX="32.0" layoutY="27.0" onAction="#lblSearchOnAction" prefHeight="26.0" prefWidth="239.0" promptText="Branch Id" />
+            <JFXTextField fx:id="txtEmpId1" focusColor="#0040ff" labelFloat="true" layoutX="368.0" layoutY="27.0" onAction="#lblSearchOnAction" prefHeight="26.0" prefWidth="302.0" promptText="Name" />
+            <JFXTextField fx:id="txtEmpId11" focusColor="#0040ff" labelFloat="true" layoutX="774.0" layoutY="27.0" onAction="#lblSearchOnAction" prefHeight="26.0" prefWidth="266.0" promptText="Loaction" />
+            <JFXButton layoutX="1122.0" layoutY="27.0" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #5D9C59;" text="Add" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="bookTable" layoutX="54.0" layoutY="174.0" prefHeight="558.0" prefWidth="1232.0" stylesheets="@../style/Table.css">
+         <columns>
+            <TableColumn prefWidth="119.20000457763672" text="BranchId" />
+            <TableColumn prefWidth="400.0000305175781" text="Name" />
+            <TableColumn prefWidth="382.4000244140625" text="Loaction" />
+            <TableColumn prefWidth="177.59991455078125" text="Update" />
+            <TableColumn prefWidth="147.20001220703125" text="Close" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
