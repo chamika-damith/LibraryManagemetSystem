@@ -52,7 +52,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <MFXButton layoutX="44.0" layoutY="341.0" prefHeight="34.0" prefWidth="96.0" rippleColor="#00c8ff" style="-fx-background-color: #75a3b1;" text="Login" textFill="WHITE">
+      <MFXButton layoutX="44.0" layoutY="341.0" onAction="#btnUserLoginOnAction" prefHeight="34.0" prefWidth="96.0" rippleColor="#00c8ff" style="-fx-background-color: #75a3b1;" text="Login" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
