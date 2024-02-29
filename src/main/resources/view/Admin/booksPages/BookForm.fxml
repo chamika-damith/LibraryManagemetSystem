@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #F5F7FB;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.BookFormController">
+<AnchorPane prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #F5F7FB;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.booksPages.BookFormController">
    <children>
       <AnchorPane layoutX="44.0" layoutY="52.0" prefHeight="78.0" prefWidth="1232.0" style="-fx-background-color: FFFEFE;">
          <children>
-            <JFXTextField fx:id="txtEmpId" focusColor="#0040ff" labelFloat="true" layoutX="146.0" layoutY="26.0" onAction="#lblSearchOnAction" prefHeight="26.0" prefWidth="218.0" promptText="Title" />
-            <JFXTextField fx:id="txtEmpId1" focusColor="#0040ff" labelFloat="true" layoutX="392.0" layoutY="27.0" onAction="#lblSearchOnAction" prefHeight="26.0" prefWidth="218.0" promptText="Author" />
-            <JFXTextField fx:id="txtEmpId11" focusColor="#0040ff" labelFloat="true" layoutX="638.0" layoutY="26.0" onAction="#lblSearchOnAction" prefHeight="26.0" prefWidth="218.0" promptText="Genre" />
+            <JFXTextField focusColor="#0040ff" labelFloat="true" layoutX="146.0" layoutY="26.0" prefHeight="26.0" prefWidth="218.0" promptText="Title" />
+            <JFXTextField focusColor="#0040ff" labelFloat="true" layoutX="392.0" layoutY="27.0" prefHeight="26.0" prefWidth="218.0" promptText="Author" />
+            <JFXTextField focusColor="#0040ff" labelFloat="true" layoutX="638.0" layoutY="26.0" prefHeight="26.0" prefWidth="218.0" promptText="Genre" />
             <JFXComboBox layoutX="883.0" layoutY="27.0" prefHeight="26.0" prefWidth="218.0" promptText="Availability status" />
             <JFXButton layoutX="1136.0" layoutY="27.0" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #5D9C59;" text="Add" textFill="WHITE">
                <font>
@@ -25,7 +25,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXTextField fx:id="txtEmpId2" focusColor="#0040ff" labelFloat="true" layoutX="14.0" layoutY="27.0" onAction="#lblSearchOnAction" prefHeight="26.0" prefWidth="108.0" promptText="BookId" />
+            <JFXTextField focusColor="#0040ff" labelFloat="true" layoutX="14.0" layoutY="27.0" prefHeight="26.0" prefWidth="108.0" promptText="BookId" />
          </children>
       </AnchorPane>
       <TableView fx:id="bookTable" layoutX="44.0" layoutY="164.0" prefHeight="567.0" prefWidth="1232.0" stylesheets="@../../../style/Table.css">

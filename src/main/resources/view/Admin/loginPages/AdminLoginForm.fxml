@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="adminLoginRoot" prefHeight="417.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AdminLoginFromController">
+<AnchorPane fx:id="adminLoginRoot" prefHeight="417.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.loginPages.AdminLoginFromController">
    <children>
       <Label layoutX="151.0" layoutY="41.0" text="BookWorm">
          <font>
@@ -40,7 +39,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </MFXPasswordField>
-      <MFXButton layoutX="44.0" layoutY="341.0" prefHeight="34.0" prefWidth="96.0" rippleColor="#00c8ff" style="-fx-background-color: #75a3b1;" text="Login" textFill="WHITE">
+      <MFXButton layoutX="44.0" layoutY="341.0" onAction="#btnAdminLoginOnAction" prefHeight="34.0" prefWidth="96.0" rippleColor="#00c8ff" style="-fx-background-color: #75a3b1;" text="Login" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>

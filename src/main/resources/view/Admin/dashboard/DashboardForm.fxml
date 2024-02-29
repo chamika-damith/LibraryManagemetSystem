@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #F5F7FB;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.DashboardFormController">
+<AnchorPane prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #F5F7FB;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.dashboard.DashboardFormController">
    <children>
       <Label layoutX="36.0" layoutY="21.0" prefHeight="34.0" prefWidth="237.0" text="Welcome to Dashboard" textFill="#3e3c3c">
          <font>

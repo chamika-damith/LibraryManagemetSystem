@@ -1,4 +1,4 @@
-package org.example.controller;
+package org.example.controller.admin.booksPages;
 
 import javafx.scene.control.TableView;
 

@@ -1,4 +1,4 @@
-package org.example.controller;
+package org.example.controller.user.loginPages;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

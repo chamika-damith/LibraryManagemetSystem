@@ -12,6 +12,7 @@ public class WelcomeFormController {
     public AnchorPane welcomeRoot;
     public JFXButton btnUser;
     public JFXButton btnAdmin;
+    public AnchorPane welcomePageRoot;
 
     public void initialize() throws IOException {
         Parent parent=FXMLLoader.load(getClass().getResource("/view/user/loginPages/UserLoginForm.fxml"));
