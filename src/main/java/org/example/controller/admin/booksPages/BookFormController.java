@@ -104,7 +104,7 @@ public class BookFormController {
 
     public void btnAddBookOnAction(ActionEvent actionEvent) {
         if(isEmptyCheck()){
-            Image image=new Image("assest/login image/icon/icons8-cancel-50.png");
+            Image image=new Image("/assest/icon/icons8-cancel-50.png");
             try {
                 Notifications notifications=Notifications.create();
                 notifications.graphic(new ImageView(image));
@@ -122,7 +122,7 @@ public class BookFormController {
                     bookGenre.getText(), status));
 
             if (b){
-                Image image=new Image("assest/login image/icon/iconsOk.png");
+                Image image=new Image("/assest/icon/iconsOk.png");
                 try {
                     Notifications notifications=Notifications.create();
                     notifications.graphic(new ImageView(image));
@@ -134,6 +134,8 @@ public class BookFormController {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+
+                getAllBooks();
                 System.out.println("book add success");
             }
         }

@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="484.0" fitWidth="518.0" layoutX="10.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assest/login%20image/2425520.jpg" />
+            <Image url="@../assest/2425520.jpg" />
          </image>
       </ImageView>
       <AnchorPane fx:id="welcomeRoot" layoutX="490.0" layoutY="71.0" prefHeight="417.0" prefWidth="410.0" />

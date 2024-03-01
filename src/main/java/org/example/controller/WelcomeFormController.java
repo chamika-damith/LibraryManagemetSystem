@@ -18,7 +18,6 @@ public class WelcomeFormController {
         Parent parent=FXMLLoader.load(getClass().getResource("/view/user/loginPages/UserLoginForm.fxml"));
         welcomeRoot.getChildren().clear();
         welcomeRoot.getChildren().add(parent);
-
         btnUser.setStyle("-fx-border-color: black");
     }
 
