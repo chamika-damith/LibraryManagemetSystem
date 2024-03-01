@@ -85,15 +85,15 @@
     -fx-opacity: 80%;
 }
 
-.completeBtn{
-    -fx-background-color:  #0766AD;
+.updateBtn{
+    -fx-background-color: #2375af;
     -fx-text-fill: white;
     -fx-background-radius: 9px;
     -fx-alignment: center;
     -fx-opacity: 80%;
 }
 
-.deleteBtn{
+.removeBtn{
     -fx-background-color:  red;
     -fx-text-fill: white;
     -fx-background-radius: 9px;
