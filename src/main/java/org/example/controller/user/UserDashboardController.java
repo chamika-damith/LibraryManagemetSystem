@@ -16,12 +16,21 @@ public class UserDashboardController {
         changeRoot.getChildren().add(parent);
     }
 
-    public void btnBorrowBooksOnAction(ActionEvent actionEvent) {
+    public void btnBorrowBooksOnAction(ActionEvent actionEvent) throws IOException {
+        Parent parent= FXMLLoader.load(getClass().getResource("/view/user/bookPages/BorrowBookForm.fxml"));
+        changeRoot.getChildren().clear();
+        changeRoot.getChildren().add(parent);
     }
 
-    public void btnTransactionOnAction(ActionEvent actionEvent) {
+    public void btnTransactionOnAction(ActionEvent actionEvent) throws IOException {
+        Parent parent= FXMLLoader.load(getClass().getResource("/view/user/transaction/TransactionForm.fxml"));
+        changeRoot.getChildren().clear();
+        changeRoot.getChildren().add(parent);
     }
 
-    public void btndashboardOnAction(ActionEvent actionEvent) {
+    public void btndashboardOnAction(ActionEvent actionEvent) throws IOException {
+        Parent parent= FXMLLoader.load(getClass().getResource("/view/user/dashboard/DashboardForm.fxml"));
+        changeRoot.getChildren().clear();
+        changeRoot.getChildren().add(parent);
     }
 }
