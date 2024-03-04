@@ -46,7 +46,7 @@
             <TableColumn fx:id="colRemove" prefWidth="115.199951171875" text="Remove" />
         </columns>
       </TableView>
-      <JFXTextField layoutX="44.0" layoutY="127.0" prefHeight="36.0" prefWidth="258.0" promptText="Search Transaction" style="-fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" />
+      <JFXTextField fx:id="txtSearchBar" layoutX="44.0" layoutY="127.0" prefHeight="36.0" prefWidth="258.0" promptText="Search Transaction" style="-fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" />
       <JFXButton layoutX="312.0" layoutY="132.0" onAction="#btnAddBookOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #7f8d91;" text="Serach" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="14.0" />

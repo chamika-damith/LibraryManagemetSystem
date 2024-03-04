@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -16,11 +18,13 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import javafx.scene.paint.Color;
+import org.controlsfx.control.textfield.TextFields;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.BookBO;
 import org.example.dto.BookDto;
 import org.example.dto.tm.BooksTm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookFormController {
@@ -37,6 +41,7 @@ public class BookFormController {
     public TableColumn colStatus;
     public TableColumn colUpdate;
     public TableColumn colRemove;
+    public JFXTextField txtSearchBar;
 
     private BookBO bookBO= (BookBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.BOOK);
 
@@ -47,6 +52,7 @@ public class BookFormController {
         setAvailableStatus();
         setCellValue();
         getAllBooks();
+        searchTable();
     }
 
     private void setCellValue() {
@@ -62,8 +68,11 @@ public class BookFormController {
     private void getAllBooks(){
         obList=FXCollections.observableArrayList();
         List<BookDto> allBooks = bookBO.getAllBooks();
+        List<String> suggestionList = new ArrayList<>();
 
         for (BookDto dto: allBooks){
+            suggestionList.add(String.valueOf(dto.getBookId()));
+
             Button buttonRemove=createRemoveButton();
             String available;
             if (dto.isAvailability()){
@@ -81,6 +90,9 @@ public class BookFormController {
                buttonRemove
             ));
         }
+        String[] suggestionArray = suggestionList.toArray(new String[0]);
+        TextFields.bindAutoCompletion(txtSearchBar, suggestionArray);
+
         bookTable.setItems(obList);
     }
 
@@ -139,6 +151,7 @@ public class BookFormController {
                 }
 
                 getAllBooks();
+                clearField();
                 System.out.println("book add success");
             }
         }
@@ -208,8 +221,39 @@ public class BookFormController {
                 }
 
                 getAllBooks();
+                clearField();
                 System.out.println("book update success");
             }
         }
+    }
+
+    private void clearField(){
+        bookId.clear();
+        bookTitle.clear();
+        bookAuthor.clear();
+        bookGenre.clear();
+    }
+
+    public void searchTable() {
+        FilteredList<BooksTm> filteredData = new FilteredList<>(obList, b -> true);
+
+        txtSearchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(booksTm -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+                String bookId = String.valueOf(booksTm.getBookId());
+                String title = booksTm.getTitle().toLowerCase();
+                String genre = booksTm.getGenre().toLowerCase();
+
+                return bookId.contains(lowerCaseFilter) || title.contains(lowerCaseFilter) || genre.contains(lowerCaseFilter);
+            });
+        });
+
+        SortedList<BooksTm> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(bookTable.comparatorProperty());
+        bookTable.setItems(sortedData);
     }
 }
