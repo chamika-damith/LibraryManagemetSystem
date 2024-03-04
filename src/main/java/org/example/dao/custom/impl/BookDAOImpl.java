@@ -34,4 +34,16 @@ public class BookDAOImpl implements BookDAO {
         session.close();
         return resultList;
     }
+
+    @Override
+    public boolean update(Book dto) {
+        Session session= FactoryConfiguration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+
+        session.update(dto);
+
+        transaction.commit();
+        session.close();
+        return true;
+    }
 }

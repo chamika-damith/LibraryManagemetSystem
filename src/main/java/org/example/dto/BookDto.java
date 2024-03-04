@@ -12,5 +12,5 @@ public class BookDto {
     private String title;
     private String author;
     private String genre;
-    private String availability;
+    private boolean availability;
 }

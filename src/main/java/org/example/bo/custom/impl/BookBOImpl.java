@@ -16,7 +16,7 @@ public class BookBOImpl implements BookBO {
     @Override
     public boolean addBook(BookDto dto) {
         return bookDAO.add(new Book(dto.getBookId(),dto.getTitle(),dto.getAuthor(),dto.getGenre(),
-                dto.getAvailability()));
+                dto.isAvailability()));
     }
 
     @Override
@@ -27,8 +27,14 @@ public class BookBOImpl implements BookBO {
 
         for (Book book : all) {
             allBooks.add(new BookDto(book.getBookId(),book.getTitle(),book.getAuthor(),book.getGenre(),
-            book.getAvailability()));
+            book.isAvailability()));
         }
         return allBooks;
+    }
+
+    @Override
+    public boolean updateBook(BookDto dto) {
+        return bookDAO.update(new Book(dto.getBookId(),dto.getTitle(),dto.getAuthor(),dto.getGenre(),
+                dto.isAvailability()));
     }
 }

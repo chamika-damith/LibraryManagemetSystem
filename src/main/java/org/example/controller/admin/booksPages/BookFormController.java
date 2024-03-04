@@ -55,7 +55,6 @@ public class BookFormController {
         colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
         colGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("availability"));
-        colUpdate.setCellValueFactory(new PropertyValueFactory<>("update"));
         colRemove.setCellValueFactory(new PropertyValueFactory<>("remove"));
 
     }
@@ -65,27 +64,24 @@ public class BookFormController {
         List<BookDto> allBooks = bookBO.getAllBooks();
 
         for (BookDto dto: allBooks){
-            Button buttonUpdate=createUpdateButton();
             Button buttonRemove=createRemoveButton();
+            String available;
+            if (dto.isAvailability()){
+                available="available";
+            }else{
+                available="notAvailable";
+            }
 
             obList.add(new BooksTm(
                dto.getBookId(),
                dto.getTitle(),
                dto.getAuthor(),
                dto.getGenre(),
-               dto.getAvailability(),
-               buttonUpdate,
+               available,
                buttonRemove
             ));
         }
         bookTable.setItems(obList);
-    }
-
-    public Button createUpdateButton(){
-        Button btn=new Button("Update");
-        btn.getStyleClass().add("updateBtn");
-        btn.setCursor(Cursor.cursor("Hand"));
-        return btn;
     }
 
     public Button createRemoveButton(){
@@ -97,7 +93,7 @@ public class BookFormController {
 
     private void setAvailableStatus(){
         ObservableList<String> oblist= FXCollections.observableArrayList();
-        oblist.add("Available");
+        oblist.add("available");
         oblist.add("notAvailable");
         availabilityStatus.setItems(oblist);
     }
@@ -117,16 +113,23 @@ public class BookFormController {
                 e.printStackTrace();
             }
         }else {
-            String status = (String) availabilityStatus.getValue();
-            boolean b = bookBO.addBook(new BookDto(bookId.getText(), bookTitle.getText(), bookAuthor.getText(),
-                    bookGenre.getText(), status));
+            String value = (String) availabilityStatus.getValue();
+            boolean available;
+            if (value.equals("available")){
+                available = true;
+            }else {
+                available=false;
+            }
+
+            boolean b = bookBO.updateBook(new BookDto(bookId.getText(), bookTitle.getText(), bookAuthor.getText(),
+                    bookGenre.getText(), available));
 
             if (b){
                 Image image=new Image("/assest/icon/iconsOk.png");
                 try {
                     Notifications notifications=Notifications.create();
                     notifications.graphic(new ImageView(image));
-                    notifications.text("Value is empty! Please enter all values");
+                    notifications.text("Book add success");
                     notifications.title("Warning");
                     notifications.hideAfter(Duration.seconds(5));
                     notifications.position(Pos.TOP_RIGHT);
@@ -162,5 +165,51 @@ public class BookFormController {
             return true;
         }
         return false;
+    }
+
+    public void btnUpdateBookOnAction(ActionEvent actionEvent) {
+        if (isEmptyCheck()){
+            Image image=new Image("/assest/icon/icons8-cancel-50.png");
+            try {
+                Notifications notifications=Notifications.create();
+                notifications.graphic(new ImageView(image));
+                notifications.text("Value is empty! Please enter all values");
+                notifications.title("Warning");
+                notifications.hideAfter(Duration.seconds(5));
+                notifications.position(Pos.TOP_RIGHT);
+                notifications.show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else {
+            String value = (String) availabilityStatus.getValue();
+            boolean available;
+            if (value.equals("available")){
+                available = true;
+            }else {
+                available=false;
+            }
+
+            boolean b = bookBO.updateBook(new BookDto(bookId.getText(), bookTitle.getText(), bookAuthor.getText(),
+                    bookGenre.getText(), available));
+
+            if (b) {
+                Image image = new Image("/assest/icon/iconsOk.png");
+                try {
+                    Notifications notifications = Notifications.create();
+                    notifications.graphic(new ImageView(image));
+                    notifications.text("Book update success");
+                    notifications.title("Warning");
+                    notifications.hideAfter(Duration.seconds(5));
+                    notifications.position(Pos.TOP_RIGHT);
+                    notifications.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                getAllBooks();
+                System.out.println("book update success");
+            }
+        }
     }
 }
