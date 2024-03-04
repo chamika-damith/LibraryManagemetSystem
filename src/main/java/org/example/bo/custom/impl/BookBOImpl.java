@@ -37,4 +37,16 @@ public class BookBOImpl implements BookBO {
         return bookDAO.update(new Book(dto.getBookId(),dto.getTitle(),dto.getAuthor(),dto.getGenre(),
                 dto.isAvailability()));
     }
+
+    @Override
+    public boolean isExistBook(String id) {
+        return bookDAO.isExists(id);
+    }
+
+    @Override
+    public BookDto searchBook(String id) {
+        Book search = bookDAO.search(id);
+        BookDto bookDto = new BookDto(search.getBookId(),search.getTitle(),search.getAuthor(),search.getGenre(),search.isAvailability());
+        return bookDto;
+    }
 }

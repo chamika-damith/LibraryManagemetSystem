@@ -256,4 +256,35 @@ public class BookFormController {
         sortedData.comparatorProperty().bind(bookTable.comparatorProperty());
         bookTable.setItems(sortedData);
     }
+
+    public void btnSearchBookOnAction(ActionEvent actionEvent) {
+        String id = txtSearchBar.getText();
+
+        if (bookBO.isExistBook(id)){
+            BookDto bookDto = bookBO.searchBook(id);
+
+            if (bookDto!=null){
+                bookId.setText(bookDto.getBookId());
+                bookTitle.setText(bookDto.getTitle());
+                bookAuthor.setText(bookDto.getAuthor());
+                bookGenre.setText(bookDto.getGenre());
+                availabilityStatus.setValue(bookDto.isAvailability());
+
+                Image image=new Image("/assest/icon/iconsOk.png");
+                try {
+                    Notifications notifications=Notifications.create();
+                    notifications.graphic(new ImageView(image));
+                    notifications.text("Book Search Successfully");
+                    notifications.title("Successfully");
+                    notifications.hideAfter(Duration.seconds(5));
+                    notifications.position(Pos.TOP_RIGHT);
+                    notifications.show();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }else {
+            System.out.println("no book found");
+        }
+    }
 }

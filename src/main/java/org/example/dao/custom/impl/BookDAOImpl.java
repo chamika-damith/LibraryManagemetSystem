@@ -1,5 +1,6 @@
 package org.example.dao.custom.impl;
 
+import org.example.bo.custom.BookBO;
 import org.example.config.FactoryConfiguration;
 import org.example.dao.custom.BookDAO;
 import org.example.entity.Book;
@@ -45,5 +46,34 @@ public class BookDAOImpl implements BookDAO {
         transaction.commit();
         session.close();
         return true;
+    }
+
+    @Override
+    public boolean isExists(String id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Book book= session.get(Book.class,id);
+        transaction.commit();
+        session.close();
+
+
+        return book != null;
+    }
+
+    @Override
+    public Book search(String id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query<Book> query = session.createQuery("FROM Book WHERE bookId=:id",Book.class);
+        query.setParameter("id",id);
+
+        Book book = query.getSingleResult();
+
+        transaction.commit();
+        session.close();
+
+        return book;
     }
 }
