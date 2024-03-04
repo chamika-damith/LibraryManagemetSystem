@@ -12,4 +12,5 @@ public interface BookBO extends SuperBO {
     boolean updateBook(BookDto dto);
     boolean isExistBook(String id);
     BookDto searchBook(String id);
+    boolean deleteBook(String id);
 }

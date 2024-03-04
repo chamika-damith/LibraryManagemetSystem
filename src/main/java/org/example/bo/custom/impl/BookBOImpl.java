@@ -49,4 +49,9 @@ public class BookBOImpl implements BookBO {
         BookDto bookDto = new BookDto(search.getBookId(),search.getTitle(),search.getAuthor(),search.getGenre(),search.isAvailability());
         return bookDto;
     }
+
+    @Override
+    public boolean deleteBook(String id) {
+        return bookDAO.delete(id);
+    }
 }

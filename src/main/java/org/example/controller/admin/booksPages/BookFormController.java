@@ -9,10 +9,9 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
@@ -24,8 +23,10 @@ import org.example.bo.custom.BookBO;
 import org.example.dto.BookDto;
 import org.example.dto.tm.BooksTm;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class BookFormController {
     public TableView bookTable;
@@ -100,6 +101,7 @@ public class BookFormController {
         Button btn=new Button("Remove");
         btn.getStyleClass().add("removeBtn");
         btn.setCursor(Cursor.cursor("Hand"));
+        setDeleteBtnAction(btn);
         return btn;
     }
 
@@ -133,7 +135,7 @@ public class BookFormController {
                 available=false;
             }
 
-            boolean b = bookBO.updateBook(new BookDto(bookId.getText(), bookTitle.getText(), bookAuthor.getText(),
+            boolean b = bookBO.addBook(new BookDto(bookId.getText(), bookTitle.getText(), bookAuthor.getText(),
                     bookGenre.getText(), available));
 
             if (b){
@@ -287,4 +289,40 @@ public class BookFormController {
             System.out.println("no book found");
         }
     }
+
+    private void setDeleteBtnAction(Button btn) {
+        btn.setOnAction((e) -> {
+            ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to delete?", yes, no).showAndWait();
+
+
+            if (type.orElse(no) == yes) {
+                int focusedIndex = bookTable.getSelectionModel().getSelectedIndex();
+                BooksTm booksTm = (BooksTm) bookTable.getSelectionModel().getSelectedItem();
+
+                if (booksTm != null) {
+                    String bookId = booksTm.getBookId();
+                    boolean b = bookBO.deleteBook(bookId);
+                    if (b) {
+
+                        Image image=new Image("/assest/icon/iconsDelete.png");
+                        Notifications notifications=Notifications.create();
+                        notifications.graphic(new ImageView(image));
+                        notifications.text("Customer Delete Successfully");
+                        notifications.title("Successfully");
+                        notifications.hideAfter(Duration.seconds(5));
+                        notifications.position(Pos.TOP_RIGHT);
+                        notifications.show();
+                        System.out.println("delete selected");
+                        obList.remove(focusedIndex);
+                        getAllBooks();
+                        searchTable();
+                    }
+                }
+            }
+        });
+    }
+
 }

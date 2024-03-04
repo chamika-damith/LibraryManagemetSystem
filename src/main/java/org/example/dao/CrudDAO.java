@@ -8,4 +8,5 @@ public interface CrudDAO <T> extends SuperDAO{
     boolean update(T dto);
     boolean isExists(String id);
     T search(String id);
+    boolean delete(String id);
 }

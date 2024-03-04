@@ -57,7 +57,6 @@ public class BookDAOImpl implements BookDAO {
         transaction.commit();
         session.close();
 
-
         return book != null;
     }
 
@@ -75,5 +74,21 @@ public class BookDAOImpl implements BookDAO {
         session.close();
 
         return book;
+    }
+
+    @Override
+    public boolean delete(String id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Book book = session.get(Book.class, id);
+
+        if (book!=null){
+            session.delete(book);
+            transaction.commit();
+            session.close();
+            return true;
+        }
+        return false;
     }
 }

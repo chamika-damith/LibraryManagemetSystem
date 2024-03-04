@@ -1,4 +1,5 @@
 package org.example.entity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
@@ -9,7 +10,7 @@ import lombok.*;
 @Setter
 @ToString
 
-@Entity
+@Entity()
 public class Book {
     @Id
     private String bookId;
