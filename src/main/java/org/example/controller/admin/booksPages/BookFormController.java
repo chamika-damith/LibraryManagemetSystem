@@ -63,7 +63,6 @@ public class BookFormController {
         colGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("availability"));
         colRemove.setCellValueFactory(new PropertyValueFactory<>("remove"));
-
     }
 
     private void getAllBooks(){
@@ -310,7 +309,7 @@ public class BookFormController {
                         Image image=new Image("/assest/icon/iconsDelete.png");
                         Notifications notifications=Notifications.create();
                         notifications.graphic(new ImageView(image));
-                        notifications.text("Customer Delete Successfully");
+                        notifications.text("Book Delete Successfully");
                         notifications.title("Successfully");
                         notifications.hideAfter(Duration.seconds(5));
                         notifications.position(Pos.TOP_RIGHT);

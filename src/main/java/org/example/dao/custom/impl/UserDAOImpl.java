@@ -2,9 +2,11 @@ package org.example.dao.custom.impl;
 
 import org.example.config.FactoryConfiguration;
 import org.example.dao.custom.UserDAO;
+import org.example.entity.Book;
 import org.example.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -23,7 +25,15 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<User> getAll() {
-        return null;
+        Session session= FactoryConfiguration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+
+        Query<User> query = session.createQuery("FROM User", User.class);
+        List<User> resultList = query.getResultList();
+
+        transaction.commit();
+        session.close();
+        return resultList;
     }
 
     @Override
@@ -50,6 +60,17 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean delete(String id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        User user=session.get(User.class,id);
+
+        if (user!=null){
+            session.delete(user);
+            transaction.commit();
+            session.close();
+            return true;
+        }
         return false;
     }
 }

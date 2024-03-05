@@ -7,6 +7,7 @@ import org.example.dto.BookDto;
 import org.example.dto.UserDto;
 import org.example.entity.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserBOImpl implements UserBO {
@@ -19,7 +20,14 @@ public class UserBOImpl implements UserBO {
 
     @Override
     public List<UserDto> getAllUser() {
-        return null;
+        List<User> all = userDAO.getAll();
+        List<UserDto> allDto = new ArrayList<UserDto>();
+
+        for (User user:all) {
+            allDto.add(new UserDto(user.getUserId(),user.getUserName(),user.getEmail(),user.getPassword()));
+        }
+
+        return allDto;
     }
 
     @Override
@@ -39,6 +47,6 @@ public class UserBOImpl implements UserBO {
 
     @Override
     public boolean deleteUser(String id) {
-        return false;
+        return userDAO.delete(id);
     }
 }

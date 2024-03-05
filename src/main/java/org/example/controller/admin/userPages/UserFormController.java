@@ -1,28 +1,90 @@
 package org.example.controller.admin.userPages;
 
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
-import javafx.scene.control.TableView;
+import javafx.scene.Cursor;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import org.controlsfx.control.textfield.TextFields;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.UserBO;
 import org.example.dto.BookDto;
 import org.example.dto.UserDto;
+import org.example.dto.tm.BooksTm;
+import org.example.dto.tm.UserTm;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class UserFormController {
     public JFXTextField txtUseId;
     public JFXTextField txtUserName;
     public JFXTextField txtUserMail;
     public JFXTextField txtUserPassword;
-    public TableView UserTable;
+    public TableView userTable;
     public JFXTextField txtSearchBar;
+    public TableColumn colUserid;
+    public TableColumn colUserName;
+    public TableColumn colUserMail;
+    public TableColumn colBtnRemove;
 
     private UserBO userBO= (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.USER);
+
+    private ObservableList<UserTm> obList;
+
+    public void initialize(){
+        userTable.getStylesheets().add("/style/style.css");
+        setCellValue();
+        getAllUsers();
+        //searchTable();
+    }
+
+    private void setCellValue() {
+        colUserid.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        colUserName.setCellValueFactory(new PropertyValueFactory<>("userName"));
+        colUserMail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colBtnRemove.setCellValueFactory(new PropertyValueFactory<>("remove"));
+    }
+
+    private void getAllUsers(){
+        obList= FXCollections.observableArrayList();
+        List<UserDto> allUser = userBO.getAllUser();
+        List<String> suggestionList = new ArrayList<>();
+
+        for (UserDto dto: allUser){
+            suggestionList.add(String.valueOf(dto.getUserId()));
+
+            Button buttonRemove=createRemoveButton();
+
+            obList.add(new UserTm(
+                    dto.getUserId(),
+                    dto.getUserName(),
+                    dto.getEmail(),
+                    buttonRemove
+            ));
+        }
+        String[] suggestionArray = suggestionList.toArray(new String[0]);
+        TextFields.bindAutoCompletion(txtSearchBar, suggestionArray);
+
+        userTable.setItems(obList);
+    }
+
+    public Button createRemoveButton(){
+        Button btn=new Button("Remove");
+        btn.getStyleClass().add("removeBtn");
+        btn.setCursor(Cursor.cursor("Hand"));
+        setDeleteBtnAction(btn);
+        return btn;
+    }
 
     public void btnAddUserOnAction(ActionEvent actionEvent) {
         if(isEmptyCheck()){
@@ -137,4 +199,40 @@ public class UserFormController {
         txtUserPassword.clear();
         txtUserMail.clear();
     }
+
+    private void setDeleteBtnAction(Button btn) {
+        btn.setOnAction((e) -> {
+            ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to delete?", yes, no).showAndWait();
+
+
+            if (type.orElse(no) == yes) {
+                int focusedIndex = userTable.getSelectionModel().getSelectedIndex();
+                UserTm userTm = (UserTm) userTable.getSelectionModel().getSelectedItem();
+
+                if (userTm != null) {
+                    String userId = userTm.getUserId();
+                    boolean b = userBO.deleteUser(userId);
+                    if (b) {
+
+                        Image image=new Image("/assest/icon/iconsDelete.png");
+                        Notifications notifications=Notifications.create();
+                        notifications.graphic(new ImageView(image));
+                        notifications.text("User Delete Successfully");
+                        notifications.title("Successfully");
+                        notifications.hideAfter(Duration.seconds(5));
+                        notifications.position(Pos.TOP_RIGHT);
+                        notifications.show();
+                        System.out.println("delete selected");
+                        obList.remove(focusedIndex);
+                        getAllUsers();
+                        //searchTable();
+                    }
+                }
+            }
+        });
+    }
+
 }
