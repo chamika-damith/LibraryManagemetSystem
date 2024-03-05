@@ -10,7 +10,7 @@ import lombok.*;
 @Setter
 @ToString
 
-@Entity()
+@Entity
 public class Book {
     @Id
     private String bookId;

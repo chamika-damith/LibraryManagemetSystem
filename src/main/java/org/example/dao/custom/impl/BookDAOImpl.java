@@ -12,11 +12,11 @@ import java.util.List;
 
 public class BookDAOImpl implements BookDAO {
     @Override
-    public boolean add(Book dto) {
+    public boolean add(Book entity) {
         Session session= FactoryConfiguration.getInstance().getSession();
         Transaction transaction=session.beginTransaction();
 
-        session.save(dto);
+        session.save(entity);
 
         transaction.commit();
         session.close();
@@ -37,11 +37,11 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
-    public boolean update(Book dto) {
+    public boolean update(Book entity) {
         Session session= FactoryConfiguration.getInstance().getSession();
         Transaction transaction=session.beginTransaction();
 
-        session.update(dto);
+        session.update(entity);
 
         transaction.commit();
         session.close();

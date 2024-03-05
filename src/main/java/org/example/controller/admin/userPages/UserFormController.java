@@ -9,7 +9,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import org.example.bo.BOFactory;
+import org.example.bo.custom.UserBO;
 import org.example.dto.BookDto;
+import org.example.dto.UserDto;
 
 public class UserFormController {
     public JFXTextField txtUseId;
@@ -18,6 +21,8 @@ public class UserFormController {
     public JFXTextField txtUserPassword;
     public TableView UserTable;
     public JFXTextField txtSearchBar;
+
+    private UserBO userBO= (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.USER);
 
     public void btnAddUserOnAction(ActionEvent actionEvent) {
         if(isEmptyCheck()){
@@ -34,6 +39,9 @@ public class UserFormController {
                 e.printStackTrace();
             }
         }else {
+
+            boolean b = userBO.addUser(new UserDto(txtUseId.getText(), txtUserName.getText(), txtUserMail.getText(), txtUserPassword.getText()));
+
 
             if (b){
                 Image image=new Image("/assest/icon/iconsOk.png");

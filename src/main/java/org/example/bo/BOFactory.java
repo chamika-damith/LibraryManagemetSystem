@@ -1,6 +1,7 @@
 package org.example.bo;
 
 import org.example.bo.custom.impl.BookBOImpl;
+import org.example.bo.custom.impl.UserBOImpl;
 
 public class BOFactory {
     public static BOFactory boFactory;
@@ -12,13 +13,15 @@ public class BOFactory {
     }
 
     public enum BOType {
-        BOOK;
+        BOOK,USER;
     }
 
     public SuperBO getBO(BOType boType){
         switch (boType){
             case BOOK :
                 return new BookBOImpl();
+            case USER:
+                return new UserBOImpl();
             default:
                 return null;
         }
