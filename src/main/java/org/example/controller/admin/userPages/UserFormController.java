@@ -3,6 +3,8 @@ package org.example.controller.admin.userPages;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -45,7 +47,7 @@ public class UserFormController {
         userTable.getStylesheets().add("/style/style.css");
         setCellValue();
         getAllUsers();
-        //searchTable();
+        searchTable();
     }
 
     private void setCellValue() {
@@ -119,6 +121,7 @@ public class UserFormController {
                     e.printStackTrace();
                 }
                 clearField();
+                getAllUsers();
                 System.out.println("user add success");
             }
         }
@@ -157,6 +160,7 @@ public class UserFormController {
                 }
 
                 clearField();
+                getAllUsers();
                 System.out.println("book update success");
             }
         }
@@ -228,11 +232,35 @@ public class UserFormController {
                         System.out.println("delete selected");
                         obList.remove(focusedIndex);
                         getAllUsers();
-                        //searchTable();
+                        searchTable();
                     }
                 }
             }
         });
     }
+
+    public void searchTable() {
+        FilteredList<UserTm> filteredData = new FilteredList<>(obList, b -> true);
+
+        txtSearchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(userTm -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+                String userId = String.valueOf(userTm.getUserId());
+                String name = userTm.getUserName().toLowerCase();
+                String mail = userTm.getEmail().toLowerCase();
+
+                return userId.contains(lowerCaseFilter) || name.contains(lowerCaseFilter) || mail.contains(lowerCaseFilter);
+            });
+        });
+
+        SortedList<UserTm> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(userTable.comparatorProperty());
+        userTable.setItems(sortedData);
+    }
+
 
 }
