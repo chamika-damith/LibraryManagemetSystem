@@ -144,7 +144,7 @@ public class BookFormController {
                     Notifications notifications=Notifications.create();
                     notifications.graphic(new ImageView(image));
                     notifications.text("Book add success");
-                    notifications.title("Warning");
+                    notifications.title("success");
                     notifications.hideAfter(Duration.seconds(5));
                     notifications.position(Pos.TOP_RIGHT);
                     notifications.show();
