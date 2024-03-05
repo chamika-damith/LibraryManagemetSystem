@@ -10,6 +10,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import org.example.bo.BOFactory;
+import org.example.bo.custom.BranchBO;
+import org.example.dto.BranchDto;
 
 public class BranchFormController {
     public JFXTextField txtBranchId;
@@ -21,6 +24,8 @@ public class BranchFormController {
     public TableColumn colBranchLocation;
     public TableColumn colCloseBranch;
     public JFXTextField txtSearchBar;
+
+    private BranchBO branchBO= (BranchBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.BRANCH);
 
     public void btnAddBranchOnAction(ActionEvent actionEvent) {
         if(isEmptyCheck()){
@@ -36,10 +41,33 @@ public class BranchFormController {
             }catch (Exception e){
                 e.printStackTrace();
             }
+        }else {
+
+            boolean b = branchBO.addBranch(new BranchDto(txtBranchId.getId(), txtBranchName.getText(), txtBranchLocation.getText()));
+
+            if (b){
+                Image image=new Image("/assest/icon/iconsOk.png");
+                try {
+                    Notifications notifications=Notifications.create();
+                    notifications.graphic(new ImageView(image));
+                    notifications.text("branch add success");
+                    notifications.title("success");
+                    notifications.hideAfter(Duration.seconds(5));
+                    notifications.position(Pos.TOP_RIGHT);
+                    notifications.show();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+                //getAllBooks();
+                //clearField();
+                System.out.println("branch add success");
+            }
         }
     }
 
     public void btnUpdateBranchOnAction(ActionEvent actionEvent) {
+
     }
 
     public void btnSearchBranchOnAction(ActionEvent actionEvent) {
