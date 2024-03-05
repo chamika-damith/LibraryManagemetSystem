@@ -29,7 +29,15 @@ public class BranchDAOImpl implements BranchDAO {
 
     @Override
     public boolean update(Branch entity) {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(entity);
+
+        transaction.commit();
+        session.close();
+
+        return true;
     }
 
     @Override

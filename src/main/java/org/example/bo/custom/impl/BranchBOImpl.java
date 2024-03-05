@@ -24,7 +24,7 @@ public class BranchBOImpl implements BranchBO {
 
     @Override
     public boolean updateBranch(BranchDto dto) {
-        return false;
+        return branchDAO.update(new Branch(dto.getBranchId(),dto.getBranchName(),dto.getBranchLocation()));
     }
 
     @Override
