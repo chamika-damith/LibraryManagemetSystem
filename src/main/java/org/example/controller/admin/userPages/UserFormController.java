@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import org.example.dto.BookDto;
 
 public class UserFormController {
     public JFXTextField txtUseId;
@@ -31,6 +32,24 @@ public class UserFormController {
                 notifications.show();
             }catch (Exception e){
                 e.printStackTrace();
+            }
+        }else {
+
+            if (b){
+                Image image=new Image("/assest/icon/iconsOk.png");
+                try {
+                    Notifications notifications=Notifications.create();
+                    notifications.graphic(new ImageView(image));
+                    notifications.text("User add success");
+                    notifications.title("success");
+                    notifications.hideAfter(Duration.seconds(5));
+                    notifications.position(Pos.TOP_RIGHT);
+                    notifications.show();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+                System.out.println("user add success");
             }
         }
     }
