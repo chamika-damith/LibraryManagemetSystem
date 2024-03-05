@@ -6,9 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,6 +23,7 @@ import org.example.dto.tm.BranchTm;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class BranchFormController {
     public JFXTextField txtBranchId;
@@ -44,7 +43,7 @@ public class BranchFormController {
     public void initialize(){
         branchTable.getStylesheets().add("/style/style.css");
         setCellValue();
-        getAllBooks();
+        getAllBranch();
         //searchTable();
     }
 
@@ -55,7 +54,7 @@ public class BranchFormController {
         colCloseBranch.setCellValueFactory(new PropertyValueFactory<>("closeBranch"));
     }
 
-    private void getAllBooks(){
+    private void getAllBranch(){
         obList= FXCollections.observableArrayList();
         List<BranchDto> allBranch = branchBO.getAllBranch();
         List<String> suggestionList = new ArrayList<>();
@@ -82,7 +81,7 @@ public class BranchFormController {
         Button btn=new Button("Remove");
         btn.getStyleClass().add("removeBtn");
         btn.setCursor(Cursor.cursor("Hand"));
-        //setDeleteBtnAction(btn);
+        setDeleteBtnAction(btn);
         return btn;
     }
 
@@ -217,4 +216,40 @@ public class BranchFormController {
         }
         return false;
     }
+
+    private void setDeleteBtnAction(Button btn) {
+        btn.setOnAction((e) -> {
+            ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to delete?", yes, no).showAndWait();
+
+
+            if (type.orElse(no) == yes) {
+                int focusedIndex = branchTable.getSelectionModel().getSelectedIndex();
+                BranchTm branchTm = (BranchTm) branchTable.getSelectionModel().getSelectedItem();
+
+                if (branchTm != null) {
+                    String bookId = branchTm.getBranchId();
+                    boolean b = branchBO.deleteBranch(bookId);
+                    if (b) {
+
+                        Image image=new Image("/assest/icon/iconsDelete.png");
+                        Notifications notifications=Notifications.create();
+                        notifications.graphic(new ImageView(image));
+                        notifications.text("Branch Delete Successfully");
+                        notifications.title("Successfully");
+                        notifications.hideAfter(Duration.seconds(5));
+                        notifications.position(Pos.TOP_RIGHT);
+                        notifications.show();
+                        System.out.println("delete selected");
+                        obList.remove(focusedIndex);
+                        getAllBranch();
+                        searchTable();
+                    }
+                }
+            }
+        });
+    }
+
 }

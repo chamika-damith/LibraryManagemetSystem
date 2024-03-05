@@ -49,6 +49,6 @@ public class BranchBOImpl implements BranchBO {
 
     @Override
     public boolean deleteBranch(String id) {
-        return false;
+        return branchDAO.delete(id);
     }
 }
