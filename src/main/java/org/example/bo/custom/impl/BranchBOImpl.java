@@ -24,17 +24,19 @@ public class BranchBOImpl implements BranchBO {
 
     @Override
     public boolean updateBranch(BranchDto dto) {
-        return branchDAO.update(new Branch(dto.getBranchId(),dto.getBranchName(),dto.getBranchLocation()));
+        return branchDAO.update(new Branch(dto.getBranchId(),dto.getBranchLocation(),dto.getBranchName()));
     }
 
     @Override
     public boolean isExistBranch(String id) {
-        return false;
+        return branchDAO.isExists(id);
     }
 
     @Override
-    public BookDto searchBranch(String id) {
-        return null;
+    public BranchDto searchBranch(String id) {
+        Branch search = branchDAO.search(id);
+        BranchDto branchDto = new BranchDto(search.getBranchId(),search.getBranchName(),search.getBranchLocation());
+        return branchDto;
     }
 
     @Override

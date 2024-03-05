@@ -11,6 +11,6 @@ public interface BranchBO extends SuperBO {
     List<BranchDto> getAllBranch();
     boolean updateBranch(BranchDto dto);
     boolean isExistBranch(String id);
-    BookDto searchBranch(String id);
+    BranchDto searchBranch(String id);
     boolean deleteBranch(String id);
 }

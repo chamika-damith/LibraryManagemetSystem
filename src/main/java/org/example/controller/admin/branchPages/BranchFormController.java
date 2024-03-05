@@ -12,6 +12,7 @@ import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.BranchBO;
+import org.example.dto.BookDto;
 import org.example.dto.BranchDto;
 
 public class BranchFormController {
@@ -43,7 +44,7 @@ public class BranchFormController {
             }
         }else {
 
-            boolean b = branchBO.addBranch(new BranchDto(txtBranchId.getId(), txtBranchName.getText(), txtBranchLocation.getText()));
+            boolean b = branchBO.addBranch(new BranchDto(txtBranchId.getText(), txtBranchName.getText(), txtBranchLocation.getText()));
 
             if (b){
                 Image image=new Image("/assest/icon/iconsOk.png");
@@ -82,7 +83,7 @@ public class BranchFormController {
             }
         }else {
 
-            boolean b = branchBO.updateBranch(new BranchDto(txtBranchId.getId(), txtBranchName.getText(), txtBranchLocation.getText()));
+            boolean b = branchBO.updateBranch(new BranchDto(txtBranchId.getText(), txtBranchName.getText(), txtBranchLocation.getText()));
 
 
             if (b) {
@@ -107,6 +108,32 @@ public class BranchFormController {
     }
 
     public void btnSearchBranchOnAction(ActionEvent actionEvent) {
+        String id = txtSearchBar.getText();
+
+        if (branchBO.isExistBranch(id)){
+            BranchDto branchDto = branchBO.searchBranch(id);
+
+            if (branchDto!=null){
+                txtBranchId.setText(branchDto.getBranchId());
+                txtBranchName.setText(branchDto.getBranchName());
+                txtBranchLocation.setText(branchDto.getBranchLocation());
+
+                Image image=new Image("/assest/icon/iconsOk.png");
+                try {
+                    Notifications notifications=Notifications.create();
+                    notifications.graphic(new ImageView(image));
+                    notifications.text("Branch Search Successfully");
+                    notifications.title("Successfully");
+                    notifications.hideAfter(Duration.seconds(5));
+                    notifications.position(Pos.TOP_RIGHT);
+                    notifications.show();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }else {
+            System.out.println("no branch found");
+        }
     }
 
     private boolean isEmptyCheck() {
