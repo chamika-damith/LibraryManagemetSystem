@@ -3,6 +3,8 @@ package org.example.controller.admin.branchPages;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -20,6 +22,7 @@ import org.example.dto.BookDto;
 import org.example.dto.BranchDto;
 import org.example.dto.tm.BooksTm;
 import org.example.dto.tm.BranchTm;
+import org.example.entity.Branch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +47,7 @@ public class BranchFormController {
         branchTable.getStylesheets().add("/style/style.css");
         setCellValue();
         getAllBranch();
-        //searchTable();
+        searchTable();
     }
 
     private void setCellValue() {
@@ -118,8 +121,8 @@ public class BranchFormController {
                     e.printStackTrace();
                 }
 
-                getAllBooks();
-                //clearField();
+                getAllBranch();
+                clearField();
                 System.out.println("branch add success");
             }
         }
@@ -158,8 +161,8 @@ public class BranchFormController {
                     e.printStackTrace();
                 }
 
-                //getAllBooks();
-                //clearField();
+                getAllBranch();
+                clearField();
                 System.out.println("branch update success");
             }
         }
@@ -250,6 +253,34 @@ public class BranchFormController {
                 }
             }
         });
+    }
+
+    public void searchTable() {
+        FilteredList<BranchTm> filteredData = new FilteredList<>(obList, b -> true);
+
+        txtSearchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(branchTm -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+                String branchId = String.valueOf(branchTm.getBranchId());
+                String name = branchTm.getBranchName().toLowerCase();
+
+                return branchId.contains(lowerCaseFilter) || name.contains(lowerCaseFilter);
+            });
+        });
+
+        SortedList<BranchTm> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(branchTable.comparatorProperty());
+        branchTable.setItems(sortedData);
+    }
+
+    private void clearField(){
+        txtBranchId.clear();
+        txtBranchName.clear();
+        txtBranchLocation.clear();
     }
 
 }
