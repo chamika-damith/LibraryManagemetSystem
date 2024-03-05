@@ -10,12 +10,12 @@
 
 <AnchorPane prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #F5F7FB;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.userPages.UserFormController">
    <children>
-      <AnchorPane layoutX="54.0" layoutY="62.0" prefHeight="78.0" prefWidth="1232.0" style="-fx-background-color: FFFEFE;">
+      <AnchorPane layoutX="54.0" layoutY="34.0" prefHeight="78.0" prefWidth="1232.0" style="-fx-background-color: FFFEFE;">
          <children>
-            <JFXTextField focusColor="#0040ff" labelFloat="true" layoutX="27.0" layoutY="26.0" prefHeight="26.0" prefWidth="218.0" promptText="UserId" />
-            <JFXTextField focusColor="#0040ff" labelFloat="true" layoutX="307.0" layoutY="27.0" prefHeight="26.0" prefWidth="218.0" promptText="Name" />
-            <JFXTextField focusColor="#0040ff" labelFloat="true" layoutX="590.0" layoutY="26.0" prefHeight="26.0" prefWidth="218.0" promptText="Email" />
-            <JFXButton layoutX="1132.0" layoutY="27.0" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #5D9C59;" text="Add" textFill="WHITE">
+            <JFXTextField fx:id="txtUseId" focusColor="#0040ff" labelFloat="true" layoutX="27.0" layoutY="26.0" prefHeight="26.0" prefWidth="127.0" promptText="UserId" />
+            <JFXTextField fx:id="txtUserName" focusColor="#0040ff" labelFloat="true" layoutX="190.0" layoutY="27.0" prefHeight="26.0" prefWidth="218.0" promptText="Name" />
+            <JFXTextField fx:id="txtUserMail" focusColor="#0040ff" labelFloat="true" layoutX="452.0" layoutY="27.0" prefHeight="26.0" prefWidth="218.0" promptText="Email" />
+            <JFXButton layoutX="991.0" layoutY="26.0" onAction="#btnAddUserOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #5D9C59;" text="Add" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -23,17 +23,33 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXTextField focusColor="#0040ff" labelFloat="true" layoutX="862.0" layoutY="26.0" prefHeight="26.0" prefWidth="218.0" promptText="Password" />
+            <JFXTextField fx:id="txtUserPassword" focusColor="#0040ff" labelFloat="true" layoutX="707.0" layoutY="27.0" prefHeight="26.0" prefWidth="218.0" promptText="Password" />
+            <JFXButton layoutX="1118.0" layoutY="26.0" onAction="#btnUpdateUserOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
          </children>
       </AnchorPane>
-      <TableView fx:id="bookTable" layoutX="54.0" layoutY="174.0" prefHeight="567.0" prefWidth="1232.0" stylesheets="@../../../style/Table.css">
+      <TableView fx:id="UserTable" layoutX="54.0" layoutY="174.0" prefHeight="556.0" prefWidth="1232.0" stylesheets="@../../../style/Table.css">
          <columns>
             <TableColumn prefWidth="89.60001373291016" text="UserId" />
-            <TableColumn prefWidth="433.59999084472656" text="Name" />
-            <TableColumn prefWidth="421.6000061035156" text="Email" />
-            <TableColumn prefWidth="155.99993896484375" text="Update" />
-            <TableColumn prefWidth="125.60009765625" text="Remove" />
+            <TableColumn prefWidth="518.4000091552734" text="Name" />
+            <TableColumn prefWidth="480.79998779296875" text="Email" />
+            <TableColumn prefWidth="139.20001220703125" text="Remove" />
          </columns>
       </TableView>
+      <JFXTextField fx:id="txtSearchBar" layoutX="54.0" layoutY="137.0" prefHeight="36.0" prefWidth="258.0" promptText="Search User" style="-fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" />
+      <JFXButton layoutX="322.0" layoutY="142.0" onAction="#btnSearchUserOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #7f8d91;" text="Serach" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>
