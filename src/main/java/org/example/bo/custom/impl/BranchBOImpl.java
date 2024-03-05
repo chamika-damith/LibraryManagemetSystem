@@ -7,6 +7,7 @@ import org.example.dto.BookDto;
 import org.example.dto.BranchDto;
 import org.example.entity.Branch;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BranchBOImpl implements BranchBO {
@@ -19,7 +20,14 @@ public class BranchBOImpl implements BranchBO {
 
     @Override
     public List<BranchDto> getAllBranch() {
-        return null;
+        List<Branch> all = branchDAO.getAll();
+        List<BranchDto> allBranch = new ArrayList<>();
+
+        for (Branch branch: all) {
+            allBranch.add(new BranchDto(branch.getBranchId(),branch.getBranchName(),branch.getBranchLocation()));
+        }
+
+        return allBranch;
     }
 
     @Override

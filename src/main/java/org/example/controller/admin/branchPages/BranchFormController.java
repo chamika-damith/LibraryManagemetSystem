@@ -1,19 +1,30 @@
 package org.example.controller.admin.branchPages;
 
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import org.controlsfx.control.textfield.TextFields;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.BranchBO;
 import org.example.dto.BookDto;
 import org.example.dto.BranchDto;
+import org.example.dto.tm.BooksTm;
+import org.example.dto.tm.BranchTm;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BranchFormController {
     public JFXTextField txtBranchId;
@@ -27,6 +38,54 @@ public class BranchFormController {
     public JFXTextField txtSearchBar;
 
     private BranchBO branchBO= (BranchBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.BRANCH);
+
+    private ObservableList<BranchTm> obList;
+
+    public void initialize(){
+        branchTable.getStylesheets().add("/style/style.css");
+        setCellValue();
+        getAllBooks();
+        //searchTable();
+    }
+
+    private void setCellValue() {
+        colBranchId.setCellValueFactory(new PropertyValueFactory<>("branchId"));
+        colBranchName.setCellValueFactory(new PropertyValueFactory<>("branchName"));
+        colBranchLocation.setCellValueFactory(new PropertyValueFactory<>("branchLocation"));
+        colCloseBranch.setCellValueFactory(new PropertyValueFactory<>("closeBranch"));
+    }
+
+    private void getAllBooks(){
+        obList= FXCollections.observableArrayList();
+        List<BranchDto> allBranch = branchBO.getAllBranch();
+        List<String> suggestionList = new ArrayList<>();
+
+        for (BranchDto dto: allBranch){
+            suggestionList.add(String.valueOf(dto.getBranchId()));
+
+            Button buttonRemove=createRemoveButton();
+
+            obList.add(new BranchTm(
+                    dto.getBranchId(),
+                    dto.getBranchName(),
+                    dto.getBranchLocation(),
+                    buttonRemove
+            ));
+        }
+        String[] suggestionArray = suggestionList.toArray(new String[0]);
+        TextFields.bindAutoCompletion(txtSearchBar, suggestionArray);
+
+        branchTable.setItems(obList);
+    }
+
+    public Button createRemoveButton(){
+        Button btn=new Button("Remove");
+        btn.getStyleClass().add("removeBtn");
+        btn.setCursor(Cursor.cursor("Hand"));
+        //setDeleteBtnAction(btn);
+        return btn;
+    }
+
 
     public void btnAddBranchOnAction(ActionEvent actionEvent) {
         if(isEmptyCheck()){
@@ -60,7 +119,7 @@ public class BranchFormController {
                     e.printStackTrace();
                 }
 
-                //getAllBooks();
+                getAllBooks();
                 //clearField();
                 System.out.println("branch add success");
             }
