@@ -41,5 +41,32 @@ public class UserFormController {
     public void btnSearchUserOnAction(ActionEvent actionEvent) {
     }
 
+    private boolean isEmptyCheck() {
 
+        if(txtUseId.getText().isEmpty()){
+            txtUseId.requestFocus();
+            txtUseId.setFocusColor(Color.RED);
+            System.out.println("user id field is empty");
+            return true;
+        }
+        if(txtUserName.getText().isEmpty()){
+            txtUserName.requestFocus();
+            txtUserName.setFocusColor(Color.RED);
+            System.out.println("user name field is empty");
+            return true;
+        }
+        if (txtUserMail.getText().isEmpty()){
+            txtUserMail.requestFocus();
+            txtUserMail.setFocusColor(Color.RED);
+            System.out.println("user mail field is empty");
+            return true;
+        }
+        if (txtUserPassword.getText().isEmpty()){
+            txtUserPassword.requestFocus();
+            txtUserPassword.setFocusColor(Color.RED);
+            System.out.println("user password field is empty");
+            return true;
+        }
+        return false;
+    }
 }
