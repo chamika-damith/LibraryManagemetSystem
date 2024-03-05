@@ -5,6 +5,7 @@ import org.example.dao.DAOFactory;
 import org.example.dao.custom.UserDAO;
 import org.example.dto.BookDto;
 import org.example.dto.UserDto;
+import org.example.entity.Book;
 import org.example.entity.User;
 
 import java.util.ArrayList;
@@ -37,12 +38,14 @@ public class UserBOImpl implements UserBO {
 
     @Override
     public boolean isExistUser(String id) {
-        return false;
+        return userDAO.isExists(id);
     }
 
     @Override
-    public BookDto searchUser(String id) {
-        return null;
+    public UserDto searchUser(String id) {
+        User search = userDAO.search(id);
+        UserDto userDto = new UserDto(search.getUserId(),search.getUserName(),search.getEmail(),search.getPassword());
+        return userDto;
     }
 
     @Override

@@ -12,6 +12,6 @@ public interface UserBO extends SuperBO {
     List<UserDto> getAllUser();
     boolean updateUser(UserDto dto);
     boolean isExistUser(String id);
-    BookDto searchUser(String id);
+    UserDto searchUser(String id);
     boolean deleteUser(String id);
 }

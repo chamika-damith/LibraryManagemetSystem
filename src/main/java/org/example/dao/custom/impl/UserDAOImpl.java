@@ -50,12 +50,30 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean isExists(String id) {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        User user= session.get(User.class,id);
+        transaction.commit();
+        session.close();
+
+        return user != null;
     }
 
     @Override
     public User search(String id) {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query<User> query = session.createQuery("FROM User WHERE userId=:id",User.class);
+        query.setParameter("id",id);
+
+        User user = query.getSingleResult();
+
+        transaction.commit();
+        session.close();
+
+        return user;
     }
 
     @Override

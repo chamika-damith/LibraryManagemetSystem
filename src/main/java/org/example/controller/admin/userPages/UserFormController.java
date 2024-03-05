@@ -167,6 +167,33 @@ public class UserFormController {
     }
 
     public void btnSearchUserOnAction(ActionEvent actionEvent) {
+        String id = txtSearchBar.getText();
+
+        if (userBO.isExistUser(id)){
+            UserDto userDto = userBO.searchUser(id);
+
+            if (userDto!=null){
+                txtUseId.setText(userDto.getUserId());
+                txtUserName.setText(userDto.getUserName());
+                txtUserMail.setText(userDto.getEmail());
+                txtUserPassword.setText(userDto.getPassword());
+
+                Image image=new Image("/assest/icon/iconsOk.png");
+                try {
+                    Notifications notifications=Notifications.create();
+                    notifications.graphic(new ImageView(image));
+                    notifications.text("User Search Successfully");
+                    notifications.title("Successfully");
+                    notifications.hideAfter(Duration.seconds(5));
+                    notifications.position(Pos.TOP_RIGHT);
+                    notifications.show();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }else {
+            System.out.println("no user found");
+        }
     }
 
     private boolean isEmptyCheck() {
