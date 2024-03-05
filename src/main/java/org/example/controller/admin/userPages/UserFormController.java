@@ -56,13 +56,48 @@ public class UserFormController {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-
+                clearField();
                 System.out.println("user add success");
             }
         }
     }
 
     public void btnUpdateUserOnAction(ActionEvent actionEvent) {
+        if (isEmptyCheck()){
+            Image image=new Image("/assest/icon/icons8-cancel-50.png");
+            try {
+                Notifications notifications=Notifications.create();
+                notifications.graphic(new ImageView(image));
+                notifications.text("Value is empty! Please enter all values");
+                notifications.title("Warning");
+                notifications.hideAfter(Duration.seconds(5));
+                notifications.position(Pos.TOP_RIGHT);
+                notifications.show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else {
+            boolean b = userBO.updateUser(new UserDto(txtUseId.getText(), txtUserName.getText(), txtUserMail.getText(), txtUserPassword.getText()));
+
+
+            if (b) {
+                Image image = new Image("/assest/icon/iconsOk.png");
+                try {
+                    Notifications notifications = Notifications.create();
+                    notifications.graphic(new ImageView(image));
+                    notifications.text("Book update success");
+                    notifications.title("Warning");
+                    notifications.hideAfter(Duration.seconds(5));
+                    notifications.position(Pos.TOP_RIGHT);
+                    notifications.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                clearField();
+                System.out.println("book update success");
+            }
+        }
     }
 
     public void btnSearchUserOnAction(ActionEvent actionEvent) {
@@ -95,5 +130,11 @@ public class UserFormController {
             return true;
         }
         return false;
+    }
+
+    private void clearField(){
+        txtUserName.clear();
+        txtUserPassword.clear();
+        txtUserMail.clear();
     }
 }
