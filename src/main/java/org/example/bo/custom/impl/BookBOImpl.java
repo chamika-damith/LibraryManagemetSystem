@@ -54,4 +54,9 @@ public class BookBOImpl implements BookBO {
     public boolean deleteBook(String id) {
         return bookDAO.delete(id);
     }
+
+    @Override
+    public boolean borrowBook(String id) {
+        return false;
+    }
 }

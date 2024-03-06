@@ -88,7 +88,6 @@ public class BranchFormController {
         return btn;
     }
 
-
     public void btnAddBranchOnAction(ActionEvent actionEvent) {
         if(isEmptyCheck()){
             Image image=new Image("/assest/icon/icons8-cancel-50.png");

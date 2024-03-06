@@ -91,4 +91,9 @@ public class BookDAOImpl implements BookDAO {
         }
         return false;
     }
+
+    @Override
+    public boolean borrowBook(String id) {
+        return false;
+    }
 }

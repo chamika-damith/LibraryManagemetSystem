@@ -100,6 +100,14 @@
     -fx-alignment: center;
     -fx-opacity: 80%;
 }
+.BorrowBtn{
+    -fx-background-color:  #d4781c;
+    -fx-text-fill: white;
+    -fx-background-radius: 9px;
+    -fx-alignment: center;
+    -fx-opacity: 80%;
+}
+
 
 .statusBtn{
     -fx-background-radius: 30px;
