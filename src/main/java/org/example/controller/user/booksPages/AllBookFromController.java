@@ -107,7 +107,13 @@ public class AllBookFromController {
 
                 if (allBookTm != null) {
                     String bookId = allBookTm.getBookId();
-
+                    boolean b = bookBO.borrowBook(bookId);
+                    if (b){
+                        getAllBooks();
+                        System.out.println("book borrow");
+                    }else {
+                        System.out.println("book not borrow");
+                    }
                 }
             }
         });

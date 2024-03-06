@@ -57,6 +57,6 @@ public class BookBOImpl implements BookBO {
 
     @Override
     public boolean borrowBook(String id) {
-        return false;
+        return bookDAO.borrowBook(id);
     }
 }

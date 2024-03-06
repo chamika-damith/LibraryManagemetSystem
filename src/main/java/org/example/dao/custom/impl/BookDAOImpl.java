@@ -94,6 +94,15 @@ public class BookDAOImpl implements BookDAO {
 
     @Override
     public boolean borrowBook(String id) {
-        return false;
+        Session session= FactoryConfiguration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+
+        Query query = session.createQuery("UPDATE Book SET availability = : availability WHERE bookId = :bookId");
+        query.setParameter("availability",false);
+        query.setParameter("bookId", id);
+        int rowsUpdated = query.executeUpdate();
+        transaction.commit();
+        session.close();
+        return rowsUpdated>0;
     }
 }
