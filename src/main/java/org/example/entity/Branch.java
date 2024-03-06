@@ -1,8 +1,9 @@
 package org.example.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,6 +15,13 @@ import lombok.*;
 public class Branch {
     @Id
     private String branchId;
+
+    @Column(nullable = false)
     private String branchName;
+
+    @Column(nullable = false)
     private String branchLocation;
+
+    @ManyToMany(mappedBy = "branch")
+    private List<Book> books;
 }

@@ -1,8 +1,9 @@
 package org.example.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,7 +16,16 @@ import lombok.*;
 public class User {
     @Id
     private String userId;
+
+    @Column(nullable = false)
     private String userName;
+
+    @Column(unique = true, nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String password;
+
+    @OneToMany
+    private List<Transaction> transactions;
 }

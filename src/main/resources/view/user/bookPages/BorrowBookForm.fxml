@@ -5,11 +5,10 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #F5F7FB;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.user.booksPages.BoorowBookFormController">
    <children>
       <JFXTextField layoutX="46.0" layoutY="37.0" prefHeight="36.0" prefWidth="347.0" promptText="Search Borrowing Book" style="-fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" />
-      <TableView fx:id="bookTable" layoutX="46.0" layoutY="98.0" prefHeight="637.0" prefWidth="1232.0" style="-fx-border-radius: 10;" stylesheets="@../../../style/Table.css">
+      <TableView fx:id="bookTable" layoutX="46.0" layoutY="74.0" prefHeight="662.0" prefWidth="1232.0" style="-fx-border-radius: 10;" stylesheets="@../../../style/Table.css">
          <columns>
             <TableColumn prefWidth="235.19999313354492" text="Book Id" />
             <TableColumn prefWidth="244.00003051757812" text="Title" />
