@@ -3,6 +3,8 @@ package org.example.controller.user.booksPages;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -42,7 +44,7 @@ public class AllBookFromController {
         bookTable.getStylesheets().add("/style/style.css");
         setCellValue();
         getAllBooks();
-        //searchTable();
+        searchTable();
     }
 
     private void setCellValue() {
@@ -118,4 +120,28 @@ public class AllBookFromController {
             }
         });
     }
+
+    public void searchTable() {
+        FilteredList<AllBookTm> filteredData = new FilteredList<>(obList, b -> true);
+
+        txtSearchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(allBookTm -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+                String bookId = String.valueOf(allBookTm.getBookId());
+                String title = allBookTm.getTitle().toLowerCase();
+                String genre = allBookTm.getGenre().toLowerCase();
+
+                return bookId.contains(lowerCaseFilter) || title.contains(lowerCaseFilter) || genre.contains(lowerCaseFilter);
+            });
+        });
+
+        SortedList<AllBookTm> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(bookTable.comparatorProperty());
+        bookTable.setItems(sortedData);
+    }
+
 }
