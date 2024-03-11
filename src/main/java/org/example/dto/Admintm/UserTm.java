@@ -1,4 +1,4 @@
-package org.example.dto.tm;
+package org.example.dto.Admintm;
 
 import javafx.scene.control.Button;
 import lombok.*;

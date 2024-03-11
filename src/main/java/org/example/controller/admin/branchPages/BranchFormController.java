@@ -18,11 +18,9 @@ import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.TextFields;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.BranchBO;
-import org.example.dto.BookDto;
 import org.example.dto.BranchDto;
-import org.example.dto.tm.BooksTm;
-import org.example.dto.tm.BranchTm;
-import org.example.entity.Branch;
+import org.example.dto.Admintm.BranchTm;
+import org.example.entity.Book;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,6 +101,7 @@ public class BranchFormController {
                 e.printStackTrace();
             }
         }else {
+            List<Book> books=new ArrayList<>();
 
             boolean b = branchBO.addBranch(new BranchDto(txtBranchId.getText(), txtBranchName.getText(), txtBranchLocation.getText()));
 
@@ -142,6 +141,8 @@ public class BranchFormController {
                 e.printStackTrace();
             }
         }else {
+
+            List<Book> books=new ArrayList<>();
 
             boolean b = branchBO.updateBranch(new BranchDto(txtBranchId.getText(), txtBranchName.getText(), txtBranchLocation.getText()));
 

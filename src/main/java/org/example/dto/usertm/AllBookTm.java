@@ -1,19 +1,19 @@
-package org.example.dto.tm;
-
-import lombok.*;
+package org.example.dto.usertm;
 
 import javafx.scene.control.Button;
+import lombok.*;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 
-public class BooksTm {
+public class AllBookTm {
     private String bookId;
     private String title;
     private String author;
     private String genre;
-    private String availability;
-    private Button remove;
+    private String status;
+    private Button borrowing;
 }

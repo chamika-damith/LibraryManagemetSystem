@@ -2,6 +2,9 @@ package org.example.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -24,4 +27,15 @@ public class Book {
 
     @Column(nullable = false)
     private boolean availability;
+
+    @OneToMany(mappedBy = "book")
+    private List<Transaction> transactions;
+
+    public Book(String bookId, String title, String author, String genre, boolean availability) {
+        this.bookId = bookId;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.availability = availability;
+    }
 }

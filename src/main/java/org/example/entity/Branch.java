@@ -21,7 +21,4 @@ public class Branch {
 
     @Column(nullable = false)
     private String branchLocation;
-
-    @ManyToMany(mappedBy = "branch")
-    private List<Book> books;
 }

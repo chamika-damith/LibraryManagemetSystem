@@ -1,5 +1,6 @@
 package org.example.controller.user.loginPages;
 
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +13,9 @@ import java.io.IOException;
 
 public class UserLoginFormController {
     public AnchorPane userLoginRoot;
+    public MFXTextField txtUserName;
+
+    public static String logUserName;
 
     public void userRegisterOnAction(MouseEvent mouseEvent) throws IOException {
         Parent parent= FXMLLoader.load(getClass().getResource("/view/user/loginPages/UserRegisterForm.fxml"));
@@ -26,5 +30,7 @@ public class UserLoginFormController {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
+
+        logUserName=txtUserName.getText();
     }
 }

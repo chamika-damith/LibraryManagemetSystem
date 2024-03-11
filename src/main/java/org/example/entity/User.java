@@ -26,6 +26,13 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Transaction> transactions;
+
+    public User(String userId, String userName, String email, String password) {
+        this.userId = userId;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+    }
 }

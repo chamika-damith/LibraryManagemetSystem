@@ -11,7 +11,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
@@ -21,9 +20,9 @@ import org.controlsfx.control.textfield.TextFields;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.BookBO;
 import org.example.dto.BookDto;
-import org.example.dto.tm.BooksTm;
+import org.example.dto.Admintm.BooksTm;
+import org.example.entity.Branch;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -134,6 +133,8 @@ public class BookFormController {
                 available=false;
             }
 
+            List<Branch> branches=new ArrayList<>();
+
             boolean b = bookBO.addBook(new BookDto(bookId.getText(), bookTitle.getText(), bookAuthor.getText(),
                     bookGenre.getText(), available));
 
@@ -203,6 +204,8 @@ public class BookFormController {
             }else {
                 available=false;
             }
+            List<Branch> branches=new ArrayList<>();
+
 
             boolean b = bookBO.updateBook(new BookDto(bookId.getText(), bookTitle.getText(), bookAuthor.getText(),
                     bookGenre.getText(), available));

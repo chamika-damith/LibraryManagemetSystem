@@ -5,21 +5,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
-import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.TextFields;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.BookBO;
 import org.example.dto.BookDto;
-import org.example.dto.tm.BooksTm;
-import org.example.dto.user.AllBookTm;
+import org.example.dto.usertm.AllBookTm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,6 +105,7 @@ public class AllBookFromController {
                     boolean b = bookBO.borrowBook(bookId);
                     if (b){
                         getAllBooks();
+
                         System.out.println("book borrow");
                     }else {
                         System.out.println("book not borrow");

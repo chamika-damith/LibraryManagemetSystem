@@ -18,10 +18,8 @@ import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.TextFields;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.UserBO;
-import org.example.dto.BookDto;
 import org.example.dto.UserDto;
-import org.example.dto.tm.BooksTm;
-import org.example.dto.tm.UserTm;
+import org.example.dto.Admintm.UserTm;
 
 import java.util.ArrayList;
 import java.util.List;
