@@ -11,10 +11,20 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.controlsfx.control.textfield.TextFields;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.BookBO;
+import org.example.bo.custom.TransactionBO;
+import org.example.bo.custom.UserBO;
+import org.example.controller.user.loginPages.UserLoginFormController;
 import org.example.dto.BookDto;
+import org.example.dto.TransactionDto;
+import org.example.dto.UserDto;
 import org.example.dto.usertm.AllBookTm;
+import org.example.entity.Book;
+import org.example.entity.User;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +39,10 @@ public class AllBookFromController {
     public JFXTextField txtSearchBar;
 
     private BookBO bookBO= (BookBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.BOOK);
+
+    private UserBO userBO= (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.USER);
+
+    private TransactionBO transactionBO= (TransactionBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.TRANSACTION);
 
     private ObservableList<AllBookTm> obList;
 
@@ -106,7 +120,28 @@ public class AllBookFromController {
                     if (b){
                         getAllBooks();
 
-                        System.out.println("book borrow");
+
+                        long millis=System.currentTimeMillis();
+                        java.sql.Date borrowingDate=new java.sql.Date(millis);
+
+
+                        LocalDate currentDate = LocalDate.now();
+                        LocalDate futureDate = currentDate.plusDays(7);
+                        java.sql.Date returnDate = java.sql.Date.valueOf(futureDate);
+
+                        UserDto userDto = userBO.searchUser(UserLoginFormController.logUserName);
+                        User user = new User(userDto.getUserId(),userDto.getUserName(),userDto.getEmail(),userDto.getPassword());
+
+                        BookDto bookDto = bookBO.searchBook(bookId);
+                        Book book = new Book(bookDto.getBookId(), bookDto.getTitle(), bookDto.getAuthor(), bookDto.getGenre(), bookDto.isAvailability());
+
+                        boolean b1 = transactionBO.saveTransaction(new TransactionDto("003", borrowingDate, returnDate, user, book));
+
+                        if (b1){
+                            System.out.println("transaction save");
+                        }else {
+                            System.out.println("transaction not saved");
+                        }
                     }else {
                         System.out.println("book not borrow");
                     }
