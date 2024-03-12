@@ -41,8 +41,8 @@ public class BorrowBookFormController {
     }
 
     private void setCellValue() {
-        colBookId.setCellValueFactory(new PropertyValueFactory<>("transactionId"));
-        colTitle.setCellValueFactory(new PropertyValueFactory<>("borrowingDate"));
+        colBookId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
+        colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
         colBorrowDate.setCellValueFactory(new PropertyValueFactory<>("borrowingDate"));
         colReturnDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
@@ -61,10 +61,10 @@ public class BorrowBookFormController {
 
             obList.add(new TransactionTm(
                     dto.getTransactionId(),
+                    dto.getBook().getTitle(),
+                    dto.getBook().getAuthor(),
                     dto.getBorrowingDate(),
                     dto.getReturnDate(),
-                    dto.getUser(),
-                    dto.getBook(),
                     buttonReturn
             ));
         }
@@ -75,7 +75,7 @@ public class BorrowBookFormController {
     }
 
     public Button createReturnButton(){
-        Button btn=new Button("Remove");
+        Button btn=new Button("Return");
         btn.getStyleClass().add("removeBtn");
         btn.setCursor(Cursor.cursor("Hand"));
         //setDeleteBtnAction(btn);

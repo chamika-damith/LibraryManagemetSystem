@@ -14,10 +14,10 @@ import java.sql.Date;
 @ToString
 
 public class TransactionTm {
-    private String transactionId;
+    private String bookId;
+    private String title;
+    private String author;
     private Date borrowingDate;
     private Date returnDate;
-    private User user;
-    private Book book;
     private Button btnreturn;
 }
