@@ -4,8 +4,13 @@ import org.example.bo.BOFactory;
 import org.example.bo.custom.TransactionBO;
 import org.example.dao.DAOFactory;
 import org.example.dao.custom.TransactionDAO;
+import org.example.dto.BookDto;
 import org.example.dto.TransactionDto;
+import org.example.entity.Book;
 import org.example.entity.Transaction;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TransactionBOImpl implements TransactionBO {
 
@@ -14,5 +19,18 @@ public class TransactionBOImpl implements TransactionBO {
     public boolean saveTransaction(TransactionDto dto) {
         return transactionDAO.add(new Transaction(dto.getTransactionId(),dto.getBorrowingDate(),dto.getReturnDate()
         ,dto.getUser(),dto.getBook()));
+    }
+
+    @Override
+    public List<TransactionDto> getTransactions() {
+        List<Transaction> all = transactionDAO.getAll();
+
+        List<TransactionDto> allTransaction = new ArrayList<>();
+
+        for (Transaction transaction : all) {
+            allTransaction.add(new TransactionDto(transaction.getTransactionId(),transaction.getBorrowingDate(),transaction.getReturnDate(),
+                    transaction.getUser(),transaction.getBook()));
+        }
+        return allTransaction;
     }
 }

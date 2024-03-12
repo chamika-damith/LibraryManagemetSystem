@@ -2,8 +2,10 @@ package org.example.dao.custom.impl;
 
 import org.example.config.FactoryConfiguration;
 import org.example.dao.custom.TransactionDAO;
+import org.example.entity.Book;
 import org.example.entity.Transaction;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -22,7 +24,15 @@ public class TransactionDAOImpl implements TransactionDAO {
 
     @Override
     public List<Transaction> getAll() {
-        return null;
+        Session session= FactoryConfiguration.getInstance().getSession();
+        org.hibernate.Transaction transaction=session.beginTransaction();
+
+        Query<Transaction> query = session.createQuery("FROM Transaction ", Transaction.class);
+        List<Transaction> resultList = query.getResultList();
+
+        transaction.commit();
+        session.close();
+        return resultList;
     }
 
     @Override
