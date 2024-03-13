@@ -6,7 +6,9 @@ import org.example.dao.DAOFactory;
 import org.example.dao.custom.TransactionDAO;
 import org.example.dto.BookDto;
 import org.example.dto.TransactionDto;
+import org.example.dto.UserTransactionDto;
 import org.example.entity.Book;
+import org.example.entity.CustomEntity;
 import org.example.entity.Transaction;
 
 import java.util.ArrayList;
@@ -30,6 +32,19 @@ public class TransactionBOImpl implements TransactionBO {
         for (Transaction transaction : all) {
             allTransaction.add(new TransactionDto(transaction.getTransactionId(),transaction.getBorrowingDate(),transaction.getReturnDate(),
                     transaction.getUser(),transaction.getBook()));
+        }
+        return allTransaction;
+    }
+
+    @Override
+    public List<UserTransactionDto> getUserTransactions() {
+        List<CustomEntity> all = transactionDAO.getUserTransaction();
+
+        List<UserTransactionDto> allTransaction = new ArrayList<>();
+
+        for ( CustomEntity transaction : all) {
+            allTransaction.add(new UserTransactionDto(transaction.getBookId(),transaction.getTitle(),transaction.getType(),
+                    transaction.getBorrowingDate(),transaction.getReturnDate(),transaction.isStatus()));
         }
         return allTransaction;
     }

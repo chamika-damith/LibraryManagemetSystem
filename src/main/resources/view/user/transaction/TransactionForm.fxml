@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="743.0" prefWidth="1306.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.user.transactionPages.UserTransactionFormController">
    <children>
-      <JFXTextField layoutX="54.0" layoutY="37.0" prefHeight="36.0" prefWidth="347.0" promptText="Search Transaction" style="-fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" />
+      <JFXTextField fx:id="txtSearchBar" layoutX="54.0" layoutY="37.0" prefHeight="36.0" prefWidth="347.0" promptText="Search Transaction" style="-fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" />
       <TableView fx:id="transactionTable" layoutX="49.0" layoutY="74.0" prefHeight="657.0" prefWidth="1232.0" style="-fx-border-radius: 10;" stylesheets="@../../../style/Table.css">
          <columns>
             <TableColumn fx:id="colBookId" prefWidth="235.19999313354492" text="Id" />

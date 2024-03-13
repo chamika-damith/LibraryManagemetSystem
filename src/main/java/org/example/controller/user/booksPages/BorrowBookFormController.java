@@ -11,10 +11,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.controlsfx.control.textfield.TextFields;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.TransactionBO;
-import org.example.dto.Admintm.BooksTm;
-import org.example.dto.BookDto;
 import org.example.dto.TransactionDto;
-import org.example.dto.usertm.TransactionTm;
+import org.example.dto.usertm.BorrowBookTm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +28,7 @@ public class BorrowBookFormController {
     public JFXTextField txtSearchBar;
 
 
-    private ObservableList<TransactionTm> obList;
+    private ObservableList<BorrowBookTm> obList;
 
     private TransactionBO transactionBO= (TransactionBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.TRANSACTION);
 
@@ -59,7 +57,7 @@ public class BorrowBookFormController {
 
             Button buttonReturn=createReturnButton();
 
-            obList.add(new TransactionTm(
+            obList.add(new BorrowBookTm(
                     dto.getTransactionId(),
                     dto.getBook().getTitle(),
                     dto.getBook().getAuthor(),
