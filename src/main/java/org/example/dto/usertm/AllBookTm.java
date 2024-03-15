@@ -14,6 +14,6 @@ public class AllBookTm {
     private String title;
     private String author;
     private String genre;
-    private String status;
+    private Button status;
     private Button borrowing;
 }

@@ -32,8 +32,9 @@ public class TransactionDAOImpl implements TransactionDAO {
         org.hibernate.Transaction transaction=session.beginTransaction();
 
         Query<Transaction> query = session.createQuery(
-                        "FROM Transaction WHERE user.userId = :userId", Transaction.class)
-                .setParameter("userId", UserLoginFormController.logUserName);
+                        "FROM Transaction t WHERE t.user.userId = :userId AND t.book.availability = :availability", Transaction.class)
+                .setParameter("userId", UserLoginFormController.logUserName)
+                .setParameter("availability", false);
         List<Transaction> resultList = query.getResultList();
 
         transaction.commit();
@@ -67,8 +68,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 
         Query<Object[]> query = session.createQuery(
                 "SELECT t.book.bookId, t.book.title, t.book.genre, t.borrowingDate, t.returnDate, t.book.availability " +
-                        "FROM Transaction t " +
-                        "WHERE t.user.userId = :userId",
+                        "FROM Transaction t " + "WHERE t.user.userId=:userId",
                 Object[].class
         ).setParameter("userId", UserLoginFormController.logUserName);
 

@@ -3,21 +3,39 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="820.0" prefWidth="1530.0" style="-fx-background-color: FFFEFE;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.AdminDashboardController">
    <children>
       <AnchorPane fx:id="changeRoot" layoutX="223.0" layoutY="76.0" prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #F5F7FB;" />
-      <Label layoutX="29.0" layoutY="16.0" prefHeight="34.0" prefWidth="131.0" text="BookWorm">
+      <Label layoutX="42.0" layoutY="24.0" prefHeight="34.0" prefWidth="131.0" text="BookWorm">
          <font>
             <Font name="Berlin Sans FB" size="25.0" />
          </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.9921568632125854" green="0.7333333492279053" blue="0.1764705926179886" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
       </Label>
-      <Line endX="1264.4000244140625" endY="7.62939453125E-6" fill="BLACK" layoutX="265.0" layoutY="75.0" startX="-265.0" startY="7.62939453125E-6" stroke="#d7d4de" />
-      <Line endX="157.0" endY="807.199951171875" fill="BLACK" layoutX="66.0" layoutY="12.0" startX="157.30001831054688" startY="-12.000001907348633" stroke="#d7d4de" />
-      <JFXButton fx:id="btnDashboardOnAction" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="32.0" layoutY="75.0" onAction="#btndashboardOnAction" prefHeight="50.0" prefWidth="191.0" stylesheets="@../../style/style.css" text="Dashboard" textFill="#838a9c">
+      <JFXButton fx:id="btnDashboardOnAction" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="31.0" layoutY="101.0" onAction="#btndashboardOnAction" prefHeight="50.0" prefWidth="191.0" style="-fx-background-radius: 15px;" styleClass="click" stylesheets="@../../style/style.css" text="Dashboard">
          <font>
             <Font name="Arial Rounded MT Bold" size="17.0" />
          </font>
@@ -25,7 +43,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton alignment="BASELINE_LEFT" layoutX="32.0" layoutY="126.0" onAction="#btnBookOnAction" prefHeight="50.0" prefWidth="191.0" stylesheets="@../../style/style.css" text="Books" textFill="#838a9c">
+      <JFXButton alignment="BASELINE_LEFT" layoutX="31.0" layoutY="171.0" onAction="#btnBookOnAction" prefHeight="50.0" prefWidth="191.0" style="-fx-background-radius: 15px; -fx-border-radius: 15px;" styleClass="click" stylesheets="@../../style/style.css" text="Books">
          <font>
             <Font name="Arial Rounded MT Bold" size="17.0" />
          </font>
@@ -33,7 +51,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton alignment="BASELINE_LEFT" layoutX="32.0" layoutY="177.0" onAction="#btnUserOnAction" prefHeight="50.0" prefWidth="191.0" stylesheets="@../../style/style.css" text="Users" textFill="#838a9c">
+      <JFXButton alignment="BASELINE_LEFT" layoutX="31.0" layoutY="240.0" onAction="#btnUserOnAction" prefHeight="50.0" prefWidth="191.0" style="-fx-background-radius: 15px; -fx-border-radius: 15px;" styleClass="click" stylesheets="@../../style/style.css" text="Users">
          <font>
             <Font name="Arial Rounded MT Bold" size="17.0" />
          </font>
@@ -41,10 +59,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Line endX="714.2000122070312" endY="38.399993896484375" fill="BLACK" layoutX="-491.0" layoutY="87.0" startX="491.0" startY="38.400001525878906" stroke="#d7d4de" />
-      <Line endX="714.2000122070312" endY="38.399993896484375" fill="BLACK" layoutX="-491.0" layoutY="138.0" startX="491.0" startY="38.399993896484375" stroke="#d7d4de" />
-      <Line endX="714.2000122070312" endY="38.399993896484375" fill="BLACK" layoutX="-491.0" layoutY="189.0" startX="491.0" startY="38.39997863769531" stroke="#d7d4de" />
-      <JFXButton alignment="BASELINE_LEFT" layoutX="32.0" layoutY="277.0" onAction="#btnTransactionOnAction" prefHeight="50.0" prefWidth="191.0" ripplerFill="#287de4" stylesheets="@../../style/style.css" text="Transaction" textFill="#838a9c">
+      <JFXButton alignment="BASELINE_LEFT" layoutX="31.0" layoutY="385.0" onAction="#btnTransactionOnAction" prefHeight="50.0" prefWidth="191.0" ripplerFill="#287de4" style="-fx-background-radius: 15px; -fx-border-radius: 15px;" styleClass="click" stylesheets="@../../style/style.css" text="Transaction">
          <font>
             <Font name="Arial Rounded MT Bold" size="17.0" />
          </font>
@@ -52,8 +67,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Line endX="714.2000122070312" endY="38.399993896484375" fill="BLACK" layoutX="-490.0" layoutY="239.0" startX="491.0" startY="38.39997863769531" stroke="#d7d4de" />
-      <JFXButton alignment="BASELINE_LEFT" layoutX="32.0" layoutY="227.0" onAction="#btnBranchesOnAction" prefHeight="50.0" prefWidth="191.0" stylesheets="@../../style/style.css" text="Branches" textFill="#838a9c">
+      <JFXButton alignment="BASELINE_LEFT" layoutX="31.0" layoutY="309.0" onAction="#btnBranchesOnAction" prefHeight="50.0" prefWidth="191.0" style="-fx-background-radius: 15px; -fx-border-radius: 15px;" styleClass="click" stylesheets="@../../style/style.css" text="Branches">
          <font>
             <Font name="Arial Rounded MT Bold" size="17.0" />
          </font>
@@ -61,6 +75,30 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Line endX="714.2000122070312" endY="38.399993896484375" fill="BLACK" layoutX="-491.0" layoutY="289.0" startX="491.0" startY="38.39997863769531" stroke="#d7d4de" />
+      <ImageView fitHeight="20.0" fitWidth="25.0" layoutX="8.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../assest/menu/dashboard.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="25.0" layoutX="8.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../assest/menu/books.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="25.0" layoutX="8.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../assest/menu/users.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="25.0" layoutX="8.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../assest/menu/branch.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="25.0" layoutX="8.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../assest/menu/transaction.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -8,6 +8,8 @@ import javafx.collections.transformation.SortedList;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.textfield.TextFields;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.BookBO;
@@ -37,6 +39,7 @@ public class AllBookFromController {
     public TableColumn colStatus;
     public TableColumn colBorrowing;
     public JFXTextField txtSearchBar;
+    public AnchorPane allBookFormRoot;
 
     private BookBO bookBO= (BookBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.BOOK);
 
@@ -72,11 +75,13 @@ public class AllBookFromController {
             suggestionList.add(String.valueOf(dto.getBookId()));
 
             Button buttonBorrow=createBorrowButton();
-            String available;
+            Button buttonStatus;
+
             if (dto.isAvailability()){
-                available="available";
-            }else{
-                available="notAvailable";
+                buttonStatus = createAvailableButton("Available");
+
+            } else {
+                buttonStatus = createNotAvailableButton("Not Available");
             }
 
             obList.add(new AllBookTm(
@@ -84,7 +89,7 @@ public class AllBookFromController {
                     dto.getTitle(),
                     dto.getAuthor(),
                     dto.getGenre(),
-                    available,
+                    buttonStatus,
                     buttonBorrow
             ));
         }
@@ -102,13 +107,27 @@ public class AllBookFromController {
         return btn;
     }
 
+    public Button createAvailableButton(String text){
+        Button btn=new Button(text);
+        btn.getStyleClass().add("Availablebtn");
+        return btn;
+    }
+
+    public Button createNotAvailableButton(String text){
+        Button btn=new Button(text);
+        btn.getStyleClass().add("NotAvailablebtn");
+        return btn;
+    }
+
     private void setBorrowBtnAction(Button btn) {
         btn.setOnAction((e) -> {
+            allBookFormRoot.setEffect(new GaussianBlur());
             ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
             ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
 
             Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to borrow?", yes, no).showAndWait();
 
+            allBookFormRoot.setEffect(null);
 
             if (type.orElse(no) == yes) {
                 int focusedIndex = bookTable.getSelectionModel().getSelectedIndex();
@@ -135,7 +154,7 @@ public class AllBookFromController {
                         BookDto bookDto = bookBO.searchBook(bookId);
                         Book book = new Book(bookDto.getBookId(), bookDto.getTitle(), bookDto.getAuthor(), bookDto.getGenre(), bookDto.isAvailability());
 
-                        boolean b1 = transactionBO.saveTransaction(new TransactionDto("003", borrowingDate, returnDate, user, book));
+                        boolean b1 = transactionBO.saveTransaction(new TransactionDto("004", borrowingDate, returnDate, user, book));
 
                         if (b1){
                             System.out.println("transaction save");

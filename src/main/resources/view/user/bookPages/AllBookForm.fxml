@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #F5F7FB;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.user.booksPages.AllBookFromController">
+<AnchorPane fx:id="allBookFormRoot" prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #F5F7FB;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.user.booksPages.AllBookFromController">
    <children>
       <TableView fx:id="bookTable" layoutX="48.0" layoutY="79.0" prefHeight="649.0" prefWidth="1232.0" stylesheets="@../../../style/Table.css">
          <columns>
