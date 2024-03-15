@@ -38,6 +38,7 @@ public class TransactionBOImpl implements TransactionBO {
 
     @Override
     public List<UserTransactionDto> getUserTransactions() {
+
         List<CustomEntity> all = transactionDAO.getUserTransaction();
 
         List<UserTransactionDto> allTransaction = new ArrayList<>();
@@ -47,5 +48,10 @@ public class TransactionBOImpl implements TransactionBO {
                     transaction.getBorrowingDate(),transaction.getReturnDate(),transaction.isStatus()));
         }
         return allTransaction;
+    }
+
+    @Override
+    public boolean returnBook(String id) {
+        return transactionDAO.returnBook(id);
     }
 }

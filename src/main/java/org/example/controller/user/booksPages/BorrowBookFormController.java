@@ -4,18 +4,24 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.controlsfx.control.textfield.TextFields;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.TransactionBO;
+import org.example.controller.user.loginPages.UserLoginFormController;
+import org.example.dto.BookDto;
 import org.example.dto.TransactionDto;
+import org.example.dto.UserDto;
+import org.example.dto.usertm.AllBookTm;
 import org.example.dto.usertm.BorrowBookTm;
+import org.example.entity.Book;
+import org.example.entity.User;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class BorrowBookFormController {
     public TableView borrowbookTable;
@@ -76,8 +82,39 @@ public class BorrowBookFormController {
         Button btn=new Button("Return");
         btn.getStyleClass().add("removeBtn");
         btn.setCursor(Cursor.cursor("Hand"));
-        //setDeleteBtnAction(btn);
+        setReturnBtnAction(btn);
         return btn;
     }
 
+    private void setReturnBtnAction(Button btn) {
+        btn.setOnAction((e) -> {
+            ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to return?", yes, no).showAndWait();
+
+
+            if (type.orElse(no) == yes) {
+                int focusedIndex = borrowbookTable.getSelectionModel().getSelectedIndex();
+                BorrowBookTm allBookTm = (BorrowBookTm) borrowbookTable.getSelectionModel().getSelectedItem();
+
+                if (allBookTm != null) {
+                    String bookId = allBookTm.getBookId();
+                    boolean b = transactionBO.returnBook(bookId);
+                    if (b){
+                        getAllTransaction();
+
+//                        boolean b1 = transactionBO.returnBook(bookId);
+//                        if (b1){
+//                            System.out.println("return success");
+//                        }else {
+//                            System.out.println("return not success");
+//                        }
+                    }else {
+                        System.out.println("book not return");
+                    }
+                }
+            }
+        });
+    }
 }

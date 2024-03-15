@@ -133,7 +133,6 @@ public class BookFormController {
                 available=false;
             }
 
-            List<Branch> branches=new ArrayList<>();
 
             boolean b = bookBO.addBook(new BookDto(bookId.getText(), bookTitle.getText(), bookAuthor.getText(),
                     bookGenre.getText(), available));

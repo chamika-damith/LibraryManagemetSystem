@@ -31,7 +31,9 @@ public class TransactionDAOImpl implements TransactionDAO {
         Session session= FactoryConfiguration.getInstance().getSession();
         org.hibernate.Transaction transaction=session.beginTransaction();
 
-        Query<Transaction> query = session.createQuery("FROM Transaction ", Transaction.class);
+        Query<Transaction> query = session.createQuery(
+                        "FROM Transaction WHERE user.userId = :userId", Transaction.class)
+                .setParameter("userId", UserLoginFormController.logUserName);
         List<Transaction> resultList = query.getResultList();
 
         transaction.commit();
@@ -88,5 +90,18 @@ public class TransactionDAOImpl implements TransactionDAO {
         transaction.commit();
         session.close();
         return customEntities;
+    }
+
+    public boolean returnBook(String id) {
+        Session session= FactoryConfiguration.getInstance().getSession();
+        org.hibernate.Transaction transaction=session.beginTransaction();
+
+        Query query = session.createQuery("UPDATE Book SET availability = : availability WHERE bookId = :bookId");
+        query.setParameter("availability",true);
+        query.setParameter("bookId", id);
+        int rowsUpdated = query.executeUpdate();
+        transaction.commit();
+        session.close();
+        return rowsUpdated>0;
     }
 }
