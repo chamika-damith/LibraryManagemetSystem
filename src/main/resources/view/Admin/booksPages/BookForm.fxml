@@ -9,15 +9,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #F5F7FB;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.booksPages.BookFormController">
+<AnchorPane prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #f2f7f5;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.booksPages.BookFormController">
    <children>
-      <AnchorPane layoutX="44.0" layoutY="24.0" prefHeight="78.0" prefWidth="1232.0" style="-fx-background-color: FFFEFE;">
+      <AnchorPane fx:id="textInputFiealdRoot" layoutX="11.0" layoutY="137.0" prefHeight="507.0" prefWidth="375.0" style="-fx-background-radius: 15px; -fx-border-color: #787878; -fx-border-radius: 15px;" styleClass="inputField" stylesheets="@../../../style/style.css">
          <children>
-            <JFXTextField fx:id="bookTitle" focusColor="#0040ff" labelFloat="true" layoutX="118.0" layoutY="26.0" prefHeight="26.0" prefWidth="175.0" promptText="Title" />
-            <JFXTextField fx:id="bookAuthor" focusColor="#0040ff" labelFloat="true" layoutX="319.0" layoutY="27.0" prefHeight="26.0" prefWidth="175.0" promptText="Author" />
-            <JFXTextField fx:id="bookGenre" focusColor="#0040ff" labelFloat="true" layoutX="520.0" layoutY="27.0" prefHeight="26.0" prefWidth="175.0" promptText="Genre" />
-            <JFXComboBox fx:id="availabilityStatus" layoutX="721.0" layoutY="27.0" prefHeight="26.0" prefWidth="175.0" promptText="Availability status" />
-            <JFXButton layoutX="994.0" layoutY="26.0" onAction="#btnAddBookOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #5D9C59;" text="Add" textFill="WHITE">
+            <JFXTextField fx:id="bookTitle" focusColor="#0040ff" labelFloat="true" layoutX="33.0" layoutY="104.0" prefHeight="26.0" prefWidth="295.0" promptText="Title" />
+            <JFXTextField fx:id="bookAuthor" focusColor="#0040ff" labelFloat="true" layoutX="32.0" layoutY="181.0" prefHeight="26.0" prefWidth="295.0" promptText="Author" />
+            <JFXTextField fx:id="bookGenre" focusColor="#0040ff" labelFloat="true" layoutX="28.0" layoutY="260.0" prefHeight="26.0" prefWidth="295.0" promptText="Genre" />
+            <JFXComboBox fx:id="availabilityStatus" layoutX="31.0" layoutY="342.0" prefHeight="26.0" prefWidth="295.0" promptText="Availability status" />
+            <JFXButton layoutX="68.0" layoutY="436.0" onAction="#btnAddBookOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #5D9C39;" text="Add" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -25,8 +25,8 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXTextField fx:id="bookId" focusColor="#0040ff" labelFloat="true" layoutX="14.0" layoutY="27.0" prefHeight="26.0" prefWidth="78.0" promptText="BookId" />
-            <JFXButton layoutX="1113.0" layoutY="27.0" onAction="#btnUpdateBookOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+            <JFXTextField fx:id="bookId" focusColor="#0040ff" labelFloat="true" layoutX="35.0" layoutY="39.0" prefHeight="26.0" prefWidth="295.0" promptText="BookId" />
+            <JFXButton layoutX="227.0" layoutY="436.0" onAction="#btnUpdateBookOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -36,18 +36,18 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <TableView fx:id="bookTable" layoutX="44.0" layoutY="164.0" prefHeight="567.0" prefWidth="1232.0" stylesheets="@../../../style/Table.css">
+      <TableView fx:id="bookTable" layoutX="400.0" layoutY="136.0" prefHeight="566.0" prefWidth="897.0" stylesheets="@../../../style/Table.css">
         <columns>
-          <TableColumn fx:id="colBookId" prefWidth="110.4000244140625" text="BookId" />
-            <TableColumn fx:id="colTitle" prefWidth="354.3999938964844" text="Title" />
-            <TableColumn fx:id="colAuthor" prefWidth="303.20001220703125" text="Author" />
-            <TableColumn fx:id="colGenre" prefWidth="199.20001220703125" text="Genre" />
-            <TableColumn fx:id="colStatus" prefWidth="141.5999755859375" text="Status" />
-            <TableColumn fx:id="colRemove" prefWidth="115.199951171875" text="Remove" />
+          <TableColumn fx:id="colBookId" prefWidth="67.99990844726562" text="BookId" />
+            <TableColumn fx:id="colTitle" prefWidth="190.13330078125" text="Title" />
+            <TableColumn fx:id="colAuthor" prefWidth="217.86669921875" text="Author" />
+            <TableColumn fx:id="colGenre" prefWidth="204.5333251953125" text="Genre" />
+            <TableColumn fx:id="colStatus" prefWidth="115.7332763671875" text="Status" />
+            <TableColumn fx:id="colRemove" prefWidth="96.800048828125" text="Remove" />
         </columns>
       </TableView>
-      <JFXTextField fx:id="txtSearchBar" layoutX="44.0" layoutY="127.0" prefHeight="36.0" prefWidth="258.0" promptText="Search Book" style="-fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" />
-      <JFXButton layoutX="312.0" layoutY="132.0" onAction="#btnSearchBookOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #7f8d91;" text="Serach" textFill="WHITE">
+      <JFXTextField fx:id="txtSearchBar" layoutX="929.0" layoutY="101.0" prefHeight="36.0" prefWidth="258.0" promptText="Search Book" style="-fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" />
+      <JFXButton layoutX="1205.0" layoutY="106.0" onAction="#btnSearchBookOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #7f8d91;" text="Serach" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>

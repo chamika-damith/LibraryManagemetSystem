@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import javafx.scene.paint.Color;
@@ -42,6 +43,7 @@ public class BookFormController {
     public TableColumn colUpdate;
     public TableColumn colRemove;
     public JFXTextField txtSearchBar;
+    public AnchorPane textInputFiealdRoot;
 
     private BookBO bookBO= (BookBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.BOOK);
 
@@ -53,6 +55,7 @@ public class BookFormController {
         setCellValue();
         getAllBooks();
         searchTable();
+        textInputFiealdRoot.getStyleClass().add("inputField");
     }
 
     private void setCellValue() {

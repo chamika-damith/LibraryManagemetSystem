@@ -7,8 +7,8 @@
 
 <AnchorPane prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #F5F7FB;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.transaction.TransactionFormController">
    <children>
-      <JFXTextField fx:id="txtSearchBar" layoutX="52.0" layoutY="27.0" prefHeight="36.0" prefWidth="347.0" promptText="Search Transaction" style="-fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" />
-      <TableView fx:id="TransactionTable" layoutX="52.0" layoutY="63.0" prefHeight="673.0" prefWidth="1232.0" style="-fx-border-radius: 10;" stylesheets="@../../../style/Table.css">
+      <JFXTextField fx:id="txtSearchBar" layoutX="918.0" layoutY="28.0" prefHeight="36.0" prefWidth="347.0" promptText="Search Transaction" style="-fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" />
+      <TableView fx:id="TransactionTable" layoutX="45.0" layoutY="63.0" prefHeight="673.0" prefWidth="1232.0" style="-fx-border-radius: 10;" stylesheets="@../../../style/Table.css">
          <columns>
             <TableColumn fx:id="colUserId" prefWidth="235.19999313354492" text="User Id" />
             <TableColumn fx:id="colBookName" prefWidth="244.00003051757812" text="Book Name" />

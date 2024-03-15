@@ -6,3 +6,8 @@
     -fx-background-color: linear-gradient(to right, #ae3232,#fdbb2d);
     -fx-text-fill: white;
 }
+
+.inputField {
+    -fx-background-color: #f2f2df;
+    -fx-background-blend-mode: color-burn;
+}

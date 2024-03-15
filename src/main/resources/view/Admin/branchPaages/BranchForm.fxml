@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #F5F7FB;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.branchPages.BranchFormController">
+<AnchorPane prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #f2f7f5;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.branchPages.BranchFormController">
    <children>
-      <AnchorPane layoutX="54.0" layoutY="37.0" prefHeight="78.0" prefWidth="1232.0" style="-fx-background-color: FFFEFE;">
+      <AnchorPane layoutX="14.0" layoutY="199.0" prefHeight="389.0" prefWidth="342.0" style="-fx-border-color: #787878; -fx-background-radius: 15px; -fx-border-radius: 15px;" styleClass="inputField" stylesheets="@../../../style/style.css">
          <children>
-            <JFXTextField fx:id="txtBranchId" focusColor="#0040ff" labelFloat="true" layoutX="32.0" layoutY="27.0" prefHeight="26.0" prefWidth="166.0" promptText="Branch Id" />
-            <JFXTextField fx:id="txtBranchName" focusColor="#0040ff" labelFloat="true" layoutX="254.0" layoutY="26.0" prefHeight="26.0" prefWidth="298.0" promptText="Name" />
-            <JFXTextField fx:id="txtBranchLocation" focusColor="#0040ff" labelFloat="true" layoutX="627.0" layoutY="27.0" prefHeight="26.0" prefWidth="297.0" promptText="Loaction" />
-            <JFXButton layoutX="988.0" layoutY="26.0" onAction="#btnAddBranchOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #5D9C59;" text="Add" textFill="WHITE">
+            <JFXTextField fx:id="txtBranchId" focusColor="#0040ff" labelFloat="true" layoutX="29.0" layoutY="63.0" prefHeight="26.0" prefWidth="284.0" promptText="Branch Id" />
+            <JFXTextField fx:id="txtBranchName" focusColor="#0040ff" labelFloat="true" layoutX="29.0" layoutY="136.0" prefHeight="26.0" prefWidth="284.0" promptText="Name" />
+            <JFXTextField fx:id="txtBranchLocation" focusColor="#0040ff" labelFloat="true" layoutX="29.0" layoutY="217.0" prefHeight="26.0" prefWidth="284.0" promptText="Loaction" />
+            <JFXButton layoutX="74.0" layoutY="299.0" onAction="#btnAddBranchOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #5D9C59;" text="Add" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -23,7 +23,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton layoutX="1116.0" layoutY="26.0" onAction="#btnUpdateBranchOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
+            <JFXButton layoutX="189.0" layoutY="299.0" onAction="#btnUpdateBranchOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -33,16 +33,16 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <TableView fx:id="branchTable" layoutX="54.0" layoutY="174.0" prefHeight="558.0" prefWidth="1232.0" stylesheets="@../../../style/Table.css">
+      <TableView fx:id="branchTable" layoutX="366.0" layoutY="161.0" prefHeight="567.0" prefWidth="925.0" stylesheets="@../../../style/Table.css">
          <columns>
-            <TableColumn fx:id="colBranchId" prefWidth="119.20000457763672" text="Branch_Id" />
-            <TableColumn fx:id="colBranchName" prefWidth="504.8000183105469" text="Name" />
-            <TableColumn fx:id="colBranchLocation" prefWidth="456.79998779296875" text="Loaction" />
-            <TableColumn fx:id="colCloseBranch" prefWidth="144.7999267578125" text="Close" />
+            <TableColumn fx:id="colBranchId" prefWidth="140.80001831054688" text="Branch_Id" />
+            <TableColumn fx:id="colBranchName" prefWidth="344.79998779296875" text="Name" />
+            <TableColumn fx:id="colBranchLocation" prefWidth="288.79998779296875" text="Loaction" />
+            <TableColumn fx:id="colCloseBranch" prefWidth="143.2000732421875" text="Close" />
          </columns>
       </TableView>
-      <JFXTextField fx:id="txtSearchBar" layoutX="58.0" layoutY="137.0" prefHeight="36.0" prefWidth="258.0" promptText="Search Branch" style="-fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" />
-      <JFXButton layoutX="326.0" layoutY="142.0" onAction="#btnSearchBranchOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #7f8d91;" text="Serach" textFill="WHITE">
+      <JFXTextField fx:id="txtSearchBar" layoutX="932.0" layoutY="126.0" prefHeight="36.0" prefWidth="258.0" promptText="Search Branch" style="-fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" />
+      <JFXButton layoutX="1200.0" layoutY="129.0" onAction="#btnSearchBranchOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #7f8d91;" text="Serach" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
