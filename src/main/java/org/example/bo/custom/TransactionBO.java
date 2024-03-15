@@ -15,4 +15,6 @@ public interface TransactionBO extends SuperBO {
 
     boolean returnBook(String id);
 
+    List<UserTransactionDto> getAllUserTransactions();
+
 }

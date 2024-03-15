@@ -11,4 +11,6 @@ public interface TransactionDAO extends CrudDAO<Transaction> {
     List<CustomEntity> getUserTransaction();
 
     boolean returnBook(String id);
+
+    List<CustomEntity> getAllUserTransaction();
 }

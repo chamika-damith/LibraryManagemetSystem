@@ -104,4 +104,33 @@ public class TransactionDAOImpl implements TransactionDAO {
         session.close();
         return rowsUpdated>0;
     }
+
+    public List<CustomEntity> getAllUserTransaction() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        org.hibernate.Transaction transaction = session.beginTransaction();
+
+        Query<Object[]> query = session.createQuery(
+                "SELECT t.book.bookId, t.book.title, t.book.genre, t.borrowingDate, t.returnDate, t.book.availability FROM Transaction t ",
+                Object[].class);
+
+        List<Object[]> resultList = query.getResultList();
+        List<CustomEntity> customEntities = new ArrayList<>();
+
+        for (Object[] result : resultList) {
+            String bookId = (String) result[0];
+            String title = (String) result[1];
+            String genre = (String) result[2];
+            Date borrowingDate = (Date) result[3];
+            Date returnDate = (Date) result[4];
+            Boolean availability = (Boolean) result[5];
+
+            CustomEntity customEntity = new CustomEntity(bookId, title, genre, borrowingDate, returnDate, availability);
+            customEntities.add(customEntity);
+        }
+
+        transaction.commit();
+        session.close();
+        return customEntities;
+    }
+
 }

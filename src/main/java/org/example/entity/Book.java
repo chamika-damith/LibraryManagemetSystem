@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -30,6 +30,9 @@ public class Book {
 
     @OneToMany(mappedBy = "book")
     private List<Transaction> transactions;
+
+    @OneToMany(mappedBy = "book")
+    private List<Branch> branches;
 
     public Book(String bookId, String title, String author, String genre, boolean availability) {
         this.bookId = bookId;

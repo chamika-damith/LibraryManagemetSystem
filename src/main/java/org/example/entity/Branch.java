@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.List;
 
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -21,4 +21,14 @@ public class Branch {
 
     @Column(nullable = false)
     private String branchLocation;
+
+    @ManyToOne
+    @JoinColumn(name="book" , nullable = false)
+    private Book book;
+
+    public Branch(String branchId, String branchName, String branchLocation) {
+        this.branchId = branchId;
+        this.branchName = branchName;
+        this.branchLocation = branchLocation;
+    }
 }
