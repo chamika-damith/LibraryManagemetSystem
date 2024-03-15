@@ -9,6 +9,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="820.0" prefWidth="1530.0" style="-fx-background-color: FFFEFE;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.user.UserDashboardController">
@@ -74,5 +75,7 @@
             <Image url="@../../assest/menu/transaction.png" />
          </image>
       </ImageView>
+      <Line endX="7.999969482421875" endY="726.199951171875" layoutX="218.0" layoutY="93.0" startX="6.092864990234375" startY="-93.0" stroke="#c9c9c9" />
+      <Line endX="1436.4000244140625" endY="7.62939453125E-6" layoutX="101.0" layoutY="77.0" startX="-100.0" stroke="#c9c9c9" />
    </children>
 </AnchorPane>

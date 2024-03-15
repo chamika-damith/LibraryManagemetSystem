@@ -17,6 +17,6 @@
             <TableColumn fx:id="colBorrowing" prefWidth="160.0" text="Borrowing" />
          </columns>
       </TableView>
-      <JFXTextField fx:id="txtSearchBar" layoutX="48.0" layoutY="42.0" prefHeight="36.0" prefWidth="354.0" promptText="Search Book" style="-fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" />
+      <JFXTextField fx:id="txtSearchBar" layoutX="913.0" layoutY="45.0" prefHeight="36.0" prefWidth="354.0" promptText="Search Book" style="-fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" />
    </children>
 </AnchorPane>
