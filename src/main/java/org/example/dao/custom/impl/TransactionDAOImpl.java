@@ -31,6 +31,7 @@ public class TransactionDAOImpl implements TransactionDAO {
         Session session= FactoryConfiguration.getInstance().getSession();
         org.hibernate.Transaction transaction=session.beginTransaction();
 
+
         Query<Transaction> query = session.createQuery(
                         "FROM Transaction t WHERE t.user.userId = :userId AND t.book.availability = :availability", Transaction.class)
                 .setParameter("userId", UserLoginFormController.logUserName)
@@ -95,6 +96,8 @@ public class TransactionDAOImpl implements TransactionDAO {
     public boolean returnBook(String id) {
         Session session= FactoryConfiguration.getInstance().getSession();
         org.hibernate.Transaction transaction=session.beginTransaction();
+
+        System.out.println(id);
 
         Query query = session.createQuery("UPDATE Book SET availability = : availability WHERE bookId = :bookId");
         query.setParameter("availability",true);

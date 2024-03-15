@@ -137,8 +137,6 @@ public class AllBookFromController {
                     String bookId = allBookTm.getBookId();
                     boolean b = bookBO.borrowBook(bookId);
                     if (b){
-                        getAllBooks();
-
 
                         long millis=System.currentTimeMillis();
                         java.sql.Date borrowingDate=new java.sql.Date(millis);
@@ -154,10 +152,12 @@ public class AllBookFromController {
                         BookDto bookDto = bookBO.searchBook(bookId);
                         Book book = new Book(bookDto.getBookId(), bookDto.getTitle(), bookDto.getAuthor(), bookDto.getGenre(), bookDto.isAvailability());
 
-                        boolean b1 = transactionBO.saveTransaction(new TransactionDto("004", borrowingDate, returnDate, user, book));
+
+                        boolean b1 = transactionBO.saveTransaction(new TransactionDto("001", borrowingDate, returnDate, user, book));
 
                         if (b1){
                             System.out.println("transaction save");
+                            getAllBooks();
                         }else {
                             System.out.println("transaction not saved");
                         }

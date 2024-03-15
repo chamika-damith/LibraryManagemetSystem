@@ -5,16 +5,27 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.Properties;
+
 public class FactoryConfiguration {
     public static FactoryConfiguration factoryConfiguration;
     private SessionFactory sessionFactory;
 
     private FactoryConfiguration(){
-        Configuration configuration=new Configuration().configure().addAnnotatedClass(Book.class)
+
+        Properties properties = new Properties();
+        try {
+            properties.load(ClassLoader.getSystemClassLoader().getResourceAsStream("/hibernate.properties"));
+        } catch (Exception ignored) {
+
+        }
+
+        Configuration configuration = new Configuration().mergeProperties(properties)
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Branch.class)
-                .addAnnotatedClass(Transaction.class);
-        sessionFactory=configuration.buildSessionFactory();
+                .addAnnotatedClass(Transaction.class)
+                .addAnnotatedClass(Book.class);
+        sessionFactory = configuration.buildSessionFactory();
     }
 
     public static FactoryConfiguration getInstance(){

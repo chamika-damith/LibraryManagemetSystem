@@ -64,7 +64,7 @@ public class BorrowBookFormController {
             Button buttonReturn=createReturnButton();
 
             obList.add(new BorrowBookTm(
-                    dto.getTransactionId(),
+                    dto.getBook().getBookId(),
                     dto.getBook().getTitle(),
                     dto.getBook().getAuthor(),
                     dto.getBorrowingDate(),
