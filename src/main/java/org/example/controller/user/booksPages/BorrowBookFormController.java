@@ -95,7 +95,6 @@ public class BorrowBookFormController {
 
 
             if (type.orElse(no) == yes) {
-                int focusedIndex = borrowbookTable.getSelectionModel().getSelectedIndex();
                 BorrowBookTm allBookTm = (BorrowBookTm) borrowbookTable.getSelectionModel().getSelectedItem();
 
                 if (allBookTm != null) {
@@ -103,13 +102,6 @@ public class BorrowBookFormController {
                     boolean b = transactionBO.returnBook(bookId);
                     if (b){
                         getAllTransaction();
-
-//                        boolean b1 = transactionBO.returnBook(bookId);
-//                        if (b1){
-//                            System.out.println("return success");
-//                        }else {
-//                            System.out.println("return not success");
-//                        }
                     }else {
                         System.out.println("book not return");
                     }
