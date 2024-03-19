@@ -136,4 +136,29 @@ public class TransactionDAOImpl implements TransactionDAO {
         return customEntities;
     }
 
+    @Override
+    public int generateNextTransactionId() {
+        Session session= FactoryConfiguration.getInstance().getSession();
+        org.hibernate.Transaction transaction=session.beginTransaction();
+
+        Query query = session.createQuery("SELECT MAX(CAST(transactionId AS integer)) FROM Transaction ");
+        Integer maxId = (Integer) query.uniqueResult();
+
+        if (maxId != null) {
+            return splitTransactionId(maxId);
+        }
+
+        transaction.commit();
+        session.close();
+
+        return splitTransactionId(0);
+    }
+
+    private static int splitTransactionId(int id) {
+        if (id ==0){
+            return 1;
+        }
+        return ++id;
+    }
+
 }

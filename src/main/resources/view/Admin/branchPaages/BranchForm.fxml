@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,7 +11,7 @@
 
 <AnchorPane prefHeight="743.0" prefWidth="1306.0" style="-fx-background-color: #f2f7f5;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.branchPages.BranchFormController">
    <children>
-      <AnchorPane layoutX="14.0" layoutY="199.0" prefHeight="389.0" prefWidth="342.0" style="-fx-border-color: #787878; -fx-background-radius: 15px; -fx-border-radius: 15px;" styleClass="inputField" stylesheets="@../../../style/style.css">
+      <AnchorPane layoutX="14.0" layoutY="166.0" prefHeight="389.0" prefWidth="342.0" style="-fx-border-color: #787878; -fx-background-radius: 15px; -fx-border-radius: 15px;" styleClass="inputField" stylesheets="@../../../style/style.css">
          <children>
             <JFXTextField fx:id="txtBranchId" focusColor="#0040ff" labelFloat="true" layoutX="29.0" layoutY="63.0" prefHeight="26.0" prefWidth="284.0" promptText="Branch Id" />
             <JFXTextField fx:id="txtBranchName" focusColor="#0040ff" labelFloat="true" layoutX="29.0" layoutY="136.0" prefHeight="26.0" prefWidth="284.0" promptText="Name" />
@@ -41,7 +42,7 @@
             <TableColumn fx:id="colCloseBranch" prefWidth="143.2000732421875" text="Close" />
          </columns>
       </TableView>
-      <JFXTextField fx:id="txtSearchBar" layoutX="932.0" layoutY="126.0" prefHeight="36.0" prefWidth="258.0" promptText="Search Branch" style="-fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" />
+      <JFXTextField fx:id="txtSearchBar" layoutX="924.0" layoutY="126.0" prefHeight="36.0" prefWidth="266.0" promptText="Search Branch" style="-fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" />
       <JFXButton layoutX="1200.0" layoutY="129.0" onAction="#btnSearchBranchOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #7f8d91;" text="Serach" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="14.0" />
@@ -50,5 +51,15 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
+      <Label layoutX="22.0" layoutY="15.0" prefHeight="34.0" prefWidth="237.0" text="Branch Managements" textFill="#3e3c3c">
+         <font>
+            <Font name="Arial Bold" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="49.0" prefHeight="14.0" prefWidth="86.0" text="Admin / Branches" textFill="#aeabab">
+         <font>
+            <Font name="System Bold" size="9.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

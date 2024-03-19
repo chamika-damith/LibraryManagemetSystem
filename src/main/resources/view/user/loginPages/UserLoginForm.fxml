@@ -30,7 +30,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </MFXTextField>
-      <MFXPasswordField layoutX="41.0" layoutY="234.0" prefHeight="46.0" prefWidth="326.0" promptText="Enter password" style="-fx-background-color: #f2eff1;" stylesheets="@../../../../../../../../StudioManagementSystem/src/main/resources/Style/textFields.css">
+      <MFXPasswordField fx:id="txtPassword" layoutX="41.0" layoutY="234.0" prefHeight="46.0" prefWidth="326.0" promptText="Enter password" style="-fx-background-color: #f2eff1;" stylesheets="@../../../../../../../../StudioManagementSystem/src/main/resources/Style/textFields.css">
          <styleClass>
             <String fx:value="customPassword" />
             <String fx:value="mfx-text-field" />

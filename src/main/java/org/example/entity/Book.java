@@ -28,11 +28,11 @@ public class Book {
     @Column(nullable = false)
     private boolean availability;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Transaction> transactions;
 
-//    @OneToMany(mappedBy = "book")
-//    private List<Branch> branches;
+    @Transient
+    private List<Branch> branches;
 
     public Book(String bookId, String title, String author, String genre, boolean availability) {
         this.bookId = bookId;

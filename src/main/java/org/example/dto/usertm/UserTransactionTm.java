@@ -18,6 +18,6 @@ public class UserTransactionTm {
     private String type;
     private Date borrowingDate;
     private Date returnDate;
-    private String status;
+    private Button status;
 
 }

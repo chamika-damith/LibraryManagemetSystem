@@ -21,6 +21,7 @@ import org.example.bo.custom.BranchBO;
 import org.example.dto.BranchDto;
 import org.example.dto.Admintm.BranchTm;
 import org.example.entity.Book;
+import org.example.regex.RegexPattern;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,27 +102,31 @@ public class BranchFormController {
                 e.printStackTrace();
             }
         }else {
-            List<Book> books=new ArrayList<>();
 
-            boolean b = branchBO.addBranch(new BranchDto(txtBranchId.getText(), txtBranchName.getText(), txtBranchLocation.getText()));
+            if (checkValidate()){
+                List<Book> books=new ArrayList<>();
 
-            if (b){
-                Image image=new Image("/assest/icon/iconsOk.png");
-                try {
-                    Notifications notifications=Notifications.create();
-                    notifications.graphic(new ImageView(image));
-                    notifications.text("branch add success");
-                    notifications.title("success");
-                    notifications.hideAfter(Duration.seconds(5));
-                    notifications.position(Pos.TOP_RIGHT);
-                    notifications.show();
-                }catch (Exception e){
-                    e.printStackTrace();
+                boolean b = branchBO.addBranch(new BranchDto(txtBranchId.getText(), txtBranchName.getText(), txtBranchLocation.getText()));
+
+                if (b){
+                    Image image=new Image("/assest/icon/iconsOk.png");
+                    try {
+                        Notifications notifications=Notifications.create();
+                        notifications.graphic(new ImageView(image));
+                        notifications.text("branch add success");
+                        notifications.title("success");
+                        notifications.hideAfter(Duration.seconds(5));
+                        notifications.position(Pos.TOP_RIGHT);
+                        notifications.show();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                    getAllBranch();
+                    clearField();
+                    generateNextId();
+                    System.out.println("branch add success");
                 }
-
-                getAllBranch();
-                clearField();
-                System.out.println("branch add success");
             }
         }
     }
@@ -282,5 +287,56 @@ public class BranchFormController {
         txtBranchName.clear();
         txtBranchLocation.clear();
     }
+
+    private void generateNextId() {
+        int id = branchBO.generateNextBranchId();
+        txtBranchId.setText(String.valueOf("00"+id));
+        System.out.println(id);
+    }
+
+
+    public boolean checkValidate(){
+        if (!(RegexPattern.getNamePattern().matcher(txtBranchName.getText()).matches())) {
+            txtBranchName.requestFocus();
+            txtBranchName.setFocusColor(Color.RED);
+
+            Image image=new Image("/assest/icon/icons8-cancel-50.png");
+            try {
+                Notifications notifications=Notifications.create();
+                notifications.graphic(new ImageView(image));
+                notifications.text("Please enter valid data");
+                notifications.title("Warning");
+                notifications.hideAfter(Duration.seconds(5));
+                notifications.position(Pos.TOP_RIGHT);
+                notifications.show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return false;
+        }
+
+        if (!(RegexPattern.getAddressPattern().matcher(txtBranchLocation.getText()).matches())){
+            txtBranchLocation.requestFocus();
+            txtBranchLocation.setFocusColor(Color.RED);
+
+            Image image=new Image("/assest/icon/icons8-cancel-50.png");
+            try {
+                Notifications notifications=Notifications.create();
+                notifications.graphic(new ImageView(image));
+                notifications.text("Please enter valid data");
+                notifications.title("Warning");
+                notifications.hideAfter(Duration.seconds(5));
+                notifications.position(Pos.TOP_RIGHT);
+                notifications.show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return false;
+        }
+            return true;
+    }
+
 
 }

@@ -34,4 +34,14 @@ public class UserDashboardController {
         changeRoot.getChildren().clear();
         changeRoot.getChildren().add(parent);
     }
+
+    public void txtSearchBarOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnArrowClickOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnLogoutOnAction(ActionEvent actionEvent) {
+
+    }
 }

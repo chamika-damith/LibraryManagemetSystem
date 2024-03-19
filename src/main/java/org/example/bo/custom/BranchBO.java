@@ -13,4 +13,6 @@ public interface BranchBO extends SuperBO {
     boolean isExistBranch(String id);
     BranchDto searchBranch(String id);
     boolean deleteBranch(String id);
+
+    int generateNextBranchId();
 }

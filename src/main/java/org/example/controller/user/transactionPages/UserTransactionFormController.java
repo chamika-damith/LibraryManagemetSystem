@@ -56,11 +56,13 @@ public class UserTransactionFormController {
         for (UserTransactionDto dto: allTransaction){
             suggestionList.add(String.valueOf(dto.getBookId()));
 
-            String available;
+            Button buttonStatus;
+
             if (dto.isStatus()){
-                available="available";
-            }else{
-                available="notAvailable";
+                buttonStatus = createAvailableButton("Returning");
+
+            } else {
+                buttonStatus = createNotAvailableButton("Not Returning");
             }
 
             obList.add(new UserTransactionTm(
@@ -69,13 +71,25 @@ public class UserTransactionFormController {
                     dto.getType(),
                     dto.getBorrowingDate(),
                     dto.getReturnDate(),
-                    available
+                    buttonStatus
             ));
         }
         String[] suggestionArray = suggestionList.toArray(new String[0]);
         TextFields.bindAutoCompletion(txtSearchBar, suggestionArray);
 
         transactionTable.setItems(obList);
+    }
+
+    public Button createAvailableButton(String text){
+        Button btn=new Button(text);
+        btn.getStyleClass().add("Availablebtn");
+        return btn;
+    }
+
+    public Button createNotAvailableButton(String text){
+        Button btn=new Button(text);
+        btn.getStyleClass().add("NotAvailablebtn");
+        return btn;
     }
 
 }

@@ -50,4 +50,9 @@ public class BranchBOImpl implements BranchBO {
     public boolean deleteBranch(String id) {
         return branchDAO.delete(id);
     }
+
+    @Override
+    public int generateNextBranchId() {
+        return branchDAO.generateNextBranchId();
+    }
 }

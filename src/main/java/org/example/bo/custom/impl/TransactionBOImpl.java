@@ -67,4 +67,9 @@ public class TransactionBOImpl implements TransactionBO {
         }
         return allTransaction;
     }
+
+    @Override
+    public int generateNextTransactionId() {
+        return transactionDAO.generateNextTransactionId();
+    }
 }

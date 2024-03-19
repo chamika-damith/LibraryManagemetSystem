@@ -23,6 +23,7 @@ import org.example.bo.custom.BookBO;
 import org.example.dto.BookDto;
 import org.example.dto.Admintm.BooksTm;
 import org.example.entity.Branch;
+import org.example.regex.RegexPattern;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,11 +77,14 @@ public class BookFormController {
             suggestionList.add(String.valueOf(dto.getBookId()));
 
             Button buttonRemove=createRemoveButton();
-            String available;
+
+            Button buttonStatus;
+
             if (dto.isAvailability()){
-                available="available";
-            }else{
-                available="notAvailable";
+                buttonStatus = createAvailableButton("Available");
+
+            } else {
+                buttonStatus = createNotAvailableButton("Not Available");
             }
 
             obList.add(new BooksTm(
@@ -88,7 +92,7 @@ public class BookFormController {
                dto.getTitle(),
                dto.getAuthor(),
                dto.getGenre(),
-               available,
+               buttonStatus,
                buttonRemove
             ));
         }
@@ -115,6 +119,7 @@ public class BookFormController {
 
     public void btnAddBookOnAction(ActionEvent actionEvent) {
         if(isEmptyCheck()){
+
             Image image=new Image("/assest/icon/icons8-cancel-50.png");
             try {
                 Notifications notifications=Notifications.create();
@@ -128,35 +133,40 @@ public class BookFormController {
                 e.printStackTrace();
             }
         }else {
-            String value = (String) availabilityStatus.getValue();
-            boolean available;
-            if (value.equals("available")){
-                available = true;
-            }else {
-                available=false;
-            }
 
-
-            boolean b = bookBO.addBook(new BookDto(bookId.getText(), bookTitle.getText(), bookAuthor.getText(),
-                    bookGenre.getText(), available));
-
-            if (b){
-                Image image=new Image("/assest/icon/iconsOk.png");
-                try {
-                    Notifications notifications=Notifications.create();
-                    notifications.graphic(new ImageView(image));
-                    notifications.text("Book add success");
-                    notifications.title("success");
-                    notifications.hideAfter(Duration.seconds(5));
-                    notifications.position(Pos.TOP_RIGHT);
-                    notifications.show();
-                }catch (Exception e){
-                    e.printStackTrace();
+            if (checkValidate()){
+                String value = (String) availabilityStatus.getValue();
+                boolean available;
+                if (value.equals("available")){
+                    available = true;
+                }else {
+                    available=false;
                 }
 
-                getAllBooks();
-                clearField();
-                System.out.println("book add success");
+
+                boolean b = bookBO.addBook(new BookDto(bookId.getText(), bookTitle.getText(), bookAuthor.getText(),
+                        bookGenre.getText(), available));
+
+                if (b){
+
+                    Image image=new Image("/assest/icon/iconsOk.png");
+                    try {
+                        Notifications notifications=Notifications.create();
+                        notifications.graphic(new ImageView(image));
+                        notifications.text("Book add success");
+                        notifications.title("success");
+                        notifications.hideAfter(Duration.seconds(5));
+                        notifications.position(Pos.TOP_RIGHT);
+                        notifications.show();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                    getAllBooks();
+                    clearField();
+                    generateNextId();
+                    System.out.println("book add success");
+                }
             }
         }
     }
@@ -199,36 +209,40 @@ public class BookFormController {
                 e.printStackTrace();
             }
         }else {
-            String value = (String) availabilityStatus.getValue();
-            boolean available;
-            if (value.equals("available")){
-                available = true;
-            }else {
-                available=false;
-            }
-            List<Branch> branches=new ArrayList<>();
 
-
-            boolean b = bookBO.updateBook(new BookDto(bookId.getText(), bookTitle.getText(), bookAuthor.getText(),
-                    bookGenre.getText(), available));
-
-            if (b) {
-                Image image = new Image("/assest/icon/iconsOk.png");
-                try {
-                    Notifications notifications = Notifications.create();
-                    notifications.graphic(new ImageView(image));
-                    notifications.text("Book update success");
-                    notifications.title("Warning");
-                    notifications.hideAfter(Duration.seconds(5));
-                    notifications.position(Pos.TOP_RIGHT);
-                    notifications.show();
-                } catch (Exception e) {
-                    e.printStackTrace();
+            if (checkValidate()){
+                String value = (String) availabilityStatus.getValue();
+                boolean available;
+                if (value.equals("available")){
+                    available = true;
+                }else {
+                    available=false;
                 }
+                List<Branch> branches=new ArrayList<>();
 
-                getAllBooks();
-                clearField();
-                System.out.println("book update success");
+
+                boolean b = bookBO.updateBook(new BookDto(bookId.getText(), bookTitle.getText(), bookAuthor.getText(),
+                        bookGenre.getText(), available));
+
+                if (b) {
+                    Image image = new Image("/assest/icon/iconsOk.png");
+                    try {
+                        Notifications notifications = Notifications.create();
+                        notifications.graphic(new ImageView(image));
+                        notifications.text("Book update success");
+                        notifications.title("Warning");
+                        notifications.hideAfter(Duration.seconds(5));
+                        notifications.position(Pos.TOP_RIGHT);
+                        notifications.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    getAllBooks();
+                    clearField();
+                    generateNextId();
+                    System.out.println("book update success");
+                }
             }
         }
     }
@@ -328,5 +342,68 @@ public class BookFormController {
             }
         });
     }
+
+    private void generateNextId() {
+        int id = bookBO.generateNextBookId();
+        bookId.setText(String.valueOf("00"+id));
+        System.out.println(id);
+    }
+
+    public Button createAvailableButton(String text){
+        Button btn=new Button(text);
+        btn.getStyleClass().add("Availablebtn");
+        return btn;
+    }
+
+    public Button createNotAvailableButton(String text){
+        Button btn=new Button(text);
+        btn.getStyleClass().add("NotAvailablebtn");
+        return btn;
+    }
+
+    public boolean checkValidate(){
+        if (!(RegexPattern.getNamePattern().matcher(bookTitle.getText()).matches())) {
+            bookTitle.requestFocus();
+            bookTitle.setFocusColor(Color.RED);
+
+            Image image=new Image("/assest/icon/icons8-cancel-50.png");
+            try {
+                Notifications notifications=Notifications.create();
+                notifications.graphic(new ImageView(image));
+                notifications.text("Please enter valid data");
+                notifications.title("Warning");
+                notifications.hideAfter(Duration.seconds(5));
+                notifications.position(Pos.TOP_RIGHT);
+                notifications.show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return false;
+        }
+
+        if (!(RegexPattern.getNamePattern().matcher(bookAuthor.getText()).matches())){
+            bookAuthor.requestFocus();
+            bookAuthor.setFocusColor(Color.RED);
+
+            Image image=new Image("/assest/icon/icons8-cancel-50.png");
+            try {
+                Notifications notifications=Notifications.create();
+                notifications.graphic(new ImageView(image));
+                notifications.text("Please enter valid data");
+                notifications.title("Warning");
+                notifications.hideAfter(Duration.seconds(5));
+                notifications.position(Pos.TOP_RIGHT);
+                notifications.show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+
 
 }

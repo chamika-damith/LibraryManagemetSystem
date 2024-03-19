@@ -5,11 +5,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.TextFields;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.BookBO;
@@ -55,6 +60,7 @@ public class AllBookFromController {
         setCellValue();
         getAllBooks();
         searchTable();
+        generateNextId();
     }
 
     private void setCellValue() {
@@ -135,6 +141,7 @@ public class AllBookFromController {
 
                 if (allBookTm != null) {
                     String bookId = allBookTm.getBookId();
+                    System.out.println("bookid "+bookId);
                     boolean b = bookBO.borrowBook(bookId);
                     if (b){
 
@@ -152,11 +159,26 @@ public class AllBookFromController {
                         BookDto bookDto = bookBO.searchBook(bookId);
                         Book book = new Book(bookDto.getBookId(), bookDto.getTitle(), bookDto.getAuthor(), bookDto.getGenre(), bookDto.isAvailability());
 
+                        String id = generateNextId();
 
-                        boolean b1 = transactionBO.saveTransaction(new TransactionDto("001", borrowingDate, returnDate, user, book));
+                        boolean b1 = transactionBO.saveTransaction(new TransactionDto(id, borrowingDate, returnDate, user, book));
 
                         if (b1){
                             System.out.println("transaction save");
+
+                            Image image=new Image("/assest/icon/iconsOk.png");
+                            try {
+                                Notifications notifications=Notifications.create();
+                                notifications.graphic(new ImageView(image));
+                                notifications.text("Book borrow successful");
+                                notifications.title("Warning");
+                                notifications.hideAfter(Duration.seconds(5));
+                                notifications.position(Pos.TOP_RIGHT);
+                                notifications.show();
+                            }catch (Exception a){
+                                a.printStackTrace();
+                            }
+
                             getAllBooks();
                         }else {
                             System.out.println("transaction not saved");
@@ -190,6 +212,12 @@ public class AllBookFromController {
         SortedList<AllBookTm> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(bookTable.comparatorProperty());
         bookTable.setItems(sortedData);
+    }
+
+    private String generateNextId() {
+        int id = transactionBO.generateNextTransactionId();
+        String nextID="00"+id;
+        return nextID;
     }
 
 }

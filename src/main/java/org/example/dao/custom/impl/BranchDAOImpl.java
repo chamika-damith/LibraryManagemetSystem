@@ -93,4 +93,33 @@ public class BranchDAOImpl implements BranchDAO {
         }
         return false;
     }
+
+    @Override
+    public int generateNextBranchId() {
+        Session session= FactoryConfiguration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+
+        Query query = session.createQuery("SELECT MAX(CAST(branchId AS integer)) FROM Branch ");
+        Integer maxId = (Integer) query.uniqueResult();
+
+        transaction.commit();
+        session.close();
+
+        if (maxId != null) {
+            return splitBranchId(maxId);
+        }
+
+        transaction.commit();
+        session.close();
+
+        return splitBranchId(0);
+    }
+
+    private static int splitBranchId(int id) {
+        if (id ==0){
+            return 1;
+        }
+        return ++id;
+    }
+
 }

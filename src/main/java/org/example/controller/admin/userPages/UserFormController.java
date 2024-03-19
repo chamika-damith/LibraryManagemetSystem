@@ -20,6 +20,7 @@ import org.example.bo.BOFactory;
 import org.example.bo.custom.UserBO;
 import org.example.dto.UserDto;
 import org.example.dto.Admintm.UserTm;
+import org.example.regex.RegexPattern;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,31 +103,52 @@ public class UserFormController {
             }
         }else {
 
-            boolean b = userBO.addUser(new UserDto(txtUseId.getText(), txtUserName.getText(), txtUserMail.getText(), txtUserPassword.getText()));
+            if (checkValidate()){
+
+                if (userBO.isExistUser(txtUseId.getText())){
+
+                    Image image=new Image("/assest/icon/icons8-cancel-50.png");
+                    try {
+                        Notifications notifications=Notifications.create();
+                        notifications.graphic(new ImageView(image));
+                        notifications.text("User is already exists");
+                        notifications.title("Warning");
+                        notifications.hideAfter(Duration.seconds(5));
+                        notifications.position(Pos.TOP_RIGHT);
+                        notifications.show();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }else {
+                    boolean b = userBO.addUser(new UserDto(txtUseId.getText(), txtUserName.getText(), txtUserMail.getText(), txtUserPassword.getText()));
 
 
-            if (b){
-                Image image=new Image("/assest/icon/iconsOk.png");
-                try {
-                    Notifications notifications=Notifications.create();
-                    notifications.graphic(new ImageView(image));
-                    notifications.text("User add success");
-                    notifications.title("success");
-                    notifications.hideAfter(Duration.seconds(5));
-                    notifications.position(Pos.TOP_RIGHT);
-                    notifications.show();
-                }catch (Exception e){
-                    e.printStackTrace();
+                    if (b){
+                        Image image=new Image("/assest/icon/iconsOk.png");
+                        try {
+                            Notifications notifications=Notifications.create();
+                            notifications.graphic(new ImageView(image));
+                            notifications.text("User add success");
+                            notifications.title("success");
+                            notifications.hideAfter(Duration.seconds(5));
+                            notifications.position(Pos.TOP_RIGHT);
+                            notifications.show();
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                        clearField();
+                        getAllUsers();
+                        generateNextId();
+                        System.out.println("user add success");
+                    }
                 }
-                clearField();
-                getAllUsers();
-                System.out.println("user add success");
             }
         }
     }
 
     public void btnUpdateUserOnAction(ActionEvent actionEvent) {
         if (isEmptyCheck()){
+
             Image image=new Image("/assest/icon/icons8-cancel-50.png");
             try {
                 Notifications notifications=Notifications.create();
@@ -140,26 +162,29 @@ public class UserFormController {
                 e.printStackTrace();
             }
         }else {
-            boolean b = userBO.updateUser(new UserDto(txtUseId.getText(), txtUserName.getText(), txtUserMail.getText(), txtUserPassword.getText()));
 
+            if (checkValidate()){
 
-            if (b) {
-                Image image = new Image("/assest/icon/iconsOk.png");
-                try {
-                    Notifications notifications = Notifications.create();
-                    notifications.graphic(new ImageView(image));
-                    notifications.text("Book update success");
-                    notifications.title("Warning");
-                    notifications.hideAfter(Duration.seconds(5));
-                    notifications.position(Pos.TOP_RIGHT);
-                    notifications.show();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                boolean b = userBO.updateUser(new UserDto(txtUseId.getText(), txtUserName.getText(), txtUserMail.getText(), txtUserPassword.getText()));
+
+                if (b) {
+                    Image image = new Image("/assest/icon/iconsOk.png");
+                    try {
+                        Notifications notifications = Notifications.create();
+                        notifications.graphic(new ImageView(image));
+                        notifications.text("Book update success");
+                        notifications.title("Warning");
+                        notifications.hideAfter(Duration.seconds(5));
+                        notifications.position(Pos.TOP_RIGHT);
+                        notifications.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    clearField();
+                    getAllUsers();
+                    System.out.println("book update success");
                 }
-
-                clearField();
-                getAllUsers();
-                System.out.println("book update success");
             }
         }
     }
@@ -287,5 +312,72 @@ public class UserFormController {
         userTable.setItems(sortedData);
     }
 
+    private void generateNextId() {
+        int id = userBO.generateNextUserId();
+        txtUseId.setText(String.valueOf("00"+id));
+    }
 
+    public boolean checkValidate(){
+        if (!(RegexPattern.getNamePattern().matcher(txtUserName.getText()).matches())) {
+            txtUserName.requestFocus();
+            txtUserName.setFocusColor(Color.RED);
+
+            Image image=new Image("/assest/icon/icons8-cancel-50.png");
+            try {
+                Notifications notifications=Notifications.create();
+                notifications.graphic(new ImageView(image));
+                notifications.text("Please enter valid data");
+                notifications.title("Warning");
+                notifications.hideAfter(Duration.seconds(5));
+                notifications.position(Pos.TOP_RIGHT);
+                notifications.show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return false;
+        }
+
+        if (!(RegexPattern.getEmailPattern().matcher(txtUserMail.getText()).matches())){
+            txtUserMail.requestFocus();
+            txtUserMail.setFocusColor(Color.RED);
+
+            Image image=new Image("/assest/icon/icons8-cancel-50.png");
+            try {
+                Notifications notifications=Notifications.create();
+                notifications.graphic(new ImageView(image));
+                notifications.text("Please enter valid data");
+                notifications.title("Warning");
+                notifications.hideAfter(Duration.seconds(5));
+                notifications.position(Pos.TOP_RIGHT);
+                notifications.show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return false;
+        }
+
+        if (!(RegexPattern.getIntPattern().matcher(txtUserPassword.getText()).matches())){
+            txtUserPassword.requestFocus();
+            txtUserPassword.setFocusColor(Color.RED);
+
+            Image image=new Image("/assest/icon/icons8-cancel-50.png");
+            try {
+                Notifications notifications=Notifications.create();
+                notifications.graphic(new ImageView(image));
+                notifications.text("Please enter only numbers");
+                notifications.title("Warning");
+                notifications.hideAfter(Duration.seconds(5));
+                notifications.position(Pos.TOP_RIGHT);
+                notifications.show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return false;
+        }
+
+        return true;
+    }
 }

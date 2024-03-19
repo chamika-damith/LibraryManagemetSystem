@@ -3,6 +3,7 @@ package org.example.controller.admin.transaction;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -53,12 +54,16 @@ public class TransactionFormController {
         for (UserTransactionDto dto: allTransaction){
             suggestionList.add(String.valueOf(dto.getBookId()));
 
-            String available;
+
+            Button buttonStatus;
+
             if (dto.isStatus()){
-                available="available";
-            }else{
-                available="notAvailable";
+                buttonStatus = createAvailableButton("Returning");
+
+            } else {
+                buttonStatus = createNotAvailableButton("Not Returning");
             }
+
 
             obList.add(new UserTransactionTm(
                     dto.getBookId(),
@@ -66,13 +71,25 @@ public class TransactionFormController {
                     dto.getType(),
                     dto.getBorrowingDate(),
                     dto.getReturnDate(),
-                    available
+                    buttonStatus
             ));
         }
         String[] suggestionArray = suggestionList.toArray(new String[0]);
         TextFields.bindAutoCompletion(txtSearchBar, suggestionArray);
 
         TransactionTable.setItems(obList);
+    }
+
+    public Button createAvailableButton(String text){
+        Button btn=new Button(text);
+        btn.getStyleClass().add("Availablebtn");
+        return btn;
+    }
+
+    public Button createNotAvailableButton(String text){
+        Button btn=new Button(text);
+        btn.getStyleClass().add("NotAvailablebtn");
+        return btn;
     }
 
 }

@@ -14,6 +14,6 @@ public class BooksTm {
     private String title;
     private String author;
     private String genre;
-    private String availability;
+    private Button availability;
     private Button remove;
 }

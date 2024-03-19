@@ -92,6 +92,7 @@ public class BookDAOImpl implements BookDAO {
         return false;
     }
 
+
     @Override
     public boolean borrowBook(String id) {
         Session session= FactoryConfiguration.getInstance().getSession();
@@ -104,5 +105,34 @@ public class BookDAOImpl implements BookDAO {
         transaction.commit();
         session.close();
         return rowsUpdated>0;
+    }
+
+    @Override
+    public int generateNextBookId() {
+        Session session= FactoryConfiguration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+
+        Query query = session.createQuery("SELECT MAX(CAST(bookId AS integer)) FROM Book");
+        Integer maxId = (Integer) query.uniqueResult();
+
+        transaction.commit();
+        session.close();
+
+        if (maxId != null) {
+            return splitBookId(maxId);
+        }
+
+        transaction.commit();
+        session.close();
+
+        return splitBookId(0);
+    }
+
+
+    private static int splitBookId(int id) {
+        if (id ==0){
+            return 1;
+        }
+        return ++id;
     }
 }

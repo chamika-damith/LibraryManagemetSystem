@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="userRegisterRoot" prefHeight="417.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.user.loginPages.UserRegisterController">
    <children>
       <Label layoutX="151.0" layoutY="41.0" text="BookWorm">
@@ -22,7 +21,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <MFXTextField layoutX="42.0" layoutY="118.0" prefHeight="42.0" prefWidth="326.0" promptText="Enter name" style="-fx-background-color: #f2eff1;" stylesheets="@../../../../../../../../StudioManagementSystem/src/main/resources/Style/textFields.css">
+      <MFXTextField fx:id="txtName" layoutX="42.0" layoutY="118.0" prefHeight="42.0" prefWidth="326.0" promptText="Enter name" style="-fx-background-color: #f2eff1;" stylesheets="@../../../../../../../../StudioManagementSystem/src/main/resources/Style/textFields.css">
          <styleClass>
             <String fx:value="customField" />
             <String fx:value="mfx-text-field" />
@@ -44,7 +43,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <MFXButton layoutX="44.0" layoutY="341.0" prefHeight="34.0" prefWidth="96.0" rippleColor="#00c8ff" style="-fx-background-color: #75a3b1;" text="Register" textFill="WHITE">
+      <MFXButton layoutX="44.0" layoutY="341.0" onAction="#btnRegisterOnAction" prefHeight="34.0" prefWidth="96.0" rippleColor="#00c8ff" style="-fx-background-color: #75a3b1;" text="Register" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
@@ -52,7 +51,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </MFXButton>
-      <MFXTextField layoutX="42.0" layoutY="184.0" prefHeight="42.0" prefWidth="326.0" promptText="Enter email" style="-fx-background-color: #f2eff1;" stylesheets="@../../../../../../../../StudioManagementSystem/src/main/resources/Style/textFields.css">
+      <MFXTextField fx:id="txtEmail" layoutX="42.0" layoutY="184.0" prefHeight="42.0" prefWidth="326.0" promptText="Enter email" style="-fx-background-color: #f2eff1;" stylesheets="@../../../../../../../../StudioManagementSystem/src/main/resources/Style/textFields.css">
          <styleClass>
             <String fx:value="customField" />
             <String fx:value="mfx-text-field" />
@@ -61,7 +60,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </MFXTextField>
-      <MFXPasswordField layoutX="42.0" layoutY="252.0" prefHeight="46.0" prefWidth="326.0" promptText="Enter password" style="-fx-background-color: #f2eff1;" stylesheets="@../../../../../../../../StudioManagementSystem/src/main/resources/Style/textFields.css">
+      <MFXPasswordField fx:id="txtPassword" layoutX="42.0" layoutY="252.0" prefHeight="46.0" prefWidth="326.0" promptText="Enter password" style="-fx-background-color: #f2eff1;" stylesheets="@../../../../../../../../StudioManagementSystem/src/main/resources/Style/textFields.css">
          <styleClass>
             <String fx:value="customPassword" />
             <String fx:value="mfx-text-field" />

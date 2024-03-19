@@ -3,9 +3,14 @@ package org.example.controller.user.booksPages;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.TextFields;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.TransactionBO;
@@ -102,6 +107,19 @@ public class BorrowBookFormController {
                     boolean b = transactionBO.returnBook(bookId);
                     if (b){
                         getAllTransaction();
+
+                        Image image=new Image("/assest/icon/iconsOk.png");
+                        try {
+                            Notifications notifications=Notifications.create();
+                            notifications.graphic(new ImageView(image));
+                            notifications.text("Book return successfully");
+                            notifications.title("Successfully");
+                            notifications.hideAfter(Duration.seconds(5));
+                            notifications.position(Pos.TOP_RIGHT);
+                            notifications.show();
+                        }catch (Exception a){
+                            a.printStackTrace();
+                        }
                     }else {
                         System.out.println("book not return");
                     }

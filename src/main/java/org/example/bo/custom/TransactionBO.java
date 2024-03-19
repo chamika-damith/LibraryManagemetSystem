@@ -17,4 +17,6 @@ public interface TransactionBO extends SuperBO {
 
     List<UserTransactionDto> getAllUserTransactions();
 
+    int generateNextTransactionId();
+
 }

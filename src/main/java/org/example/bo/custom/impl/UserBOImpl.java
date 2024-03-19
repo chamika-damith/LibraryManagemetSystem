@@ -52,4 +52,9 @@ public class UserBOImpl implements UserBO {
     public boolean deleteUser(String id) {
         return userDAO.delete(id);
     }
+
+    @Override
+    public int generateNextUserId() {
+        return userDAO.generateNextUserId();
+    }
 }

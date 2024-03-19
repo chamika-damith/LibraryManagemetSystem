@@ -91,4 +91,32 @@ public class UserDAOImpl implements UserDAO {
         }
         return false;
     }
+
+    @Override
+    public int generateNextUserId() {
+        Session session= FactoryConfiguration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+
+        Query query = session.createQuery("SELECT MAX(CAST(userId AS integer)) FROM User ");
+        Integer maxId = (Integer) query.uniqueResult();
+
+        transaction.commit();
+        session.close();
+
+        if (maxId != null) {
+            return splitUserId(maxId);
+        }
+
+        transaction.commit();
+        session.close();
+
+        return splitUserId(0);
+    }
+
+    private static int splitUserId(int id) {
+        if (id ==0){
+            return 1;
+        }
+        return ++id;
+    }
 }

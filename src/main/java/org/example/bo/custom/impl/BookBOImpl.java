@@ -59,4 +59,8 @@ public class BookBOImpl implements BookBO {
     public boolean borrowBook(String id) {
         return bookDAO.borrowBook(id);
     }
+
+    public int generateNextBookId() {
+        return bookDAO.generateNextBookId();
+    }
 }
