@@ -24,7 +24,8 @@ public class FactoryConfiguration {
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Branch.class)
                 .addAnnotatedClass(Transaction.class)
-                .addAnnotatedClass(Book.class);
+                .addAnnotatedClass(Book.class)
+                .addAnnotatedClass(Category.class);
         sessionFactory = configuration.buildSessionFactory();
     }
 

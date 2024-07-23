@@ -12,7 +12,7 @@ public class BOFactory {
     }
 
     public enum BOType {
-        BOOK,USER,BRANCH,TRANSACTION,LOGIN;
+        BOOK,USER,BRANCH,TRANSACTION,LOGIN,CATEGORY;
     }
 
     public SuperBO getBO(BOType boType){
@@ -26,7 +26,9 @@ public class BOFactory {
             case TRANSACTION:
                 return new TransactionBOImpl();
             case LOGIN:
-                new UserLoginBOImpl();
+                return new UserLoginBOImpl();
+            case CATEGORY:
+                return new CategoryBOImpl();
             default:
                 return null;
         }

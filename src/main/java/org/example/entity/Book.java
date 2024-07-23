@@ -34,6 +34,10 @@ public class Book {
     @Transient
     private List<Branch> branches;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     public Book(String bookId, String title, String author, String genre, boolean availability) {
         this.bookId = bookId;
         this.title = title;

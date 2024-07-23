@@ -89,4 +89,10 @@ public class AdminDashboardController {
         stage.setScene(scene);
         stage.centerOnScreen();
     }
+
+    public void btnCategoryOnAction(ActionEvent actionEvent) throws IOException {
+        Parent parent= FXMLLoader.load(getClass().getResource("/view/Admin/categories/CategoriesForm.fxml"));
+        changeRoot.getChildren().clear();
+        changeRoot.getChildren().add(parent);
+    }
 }

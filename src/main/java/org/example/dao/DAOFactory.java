@@ -12,7 +12,7 @@ public class DAOFactory {
     }
 
     public enum DAOType {
-        BOOK,USER,BRANCH,TRANSACTION,LOGIN;
+        BOOK,USER,BRANCH,TRANSACTION,LOGIN,CATEGORY;
     }
 
     public SuperDAO getDao(DAOType daoType){
@@ -26,7 +26,9 @@ public class DAOFactory {
             case TRANSACTION:
                 return new TransactionDAOImpl();
             case LOGIN:
-                new UserLoginDAOImpl();
+                return new UserLoginDAOImpl();
+            case CATEGORY:
+                return new CategoryDAOImpl();
             default:
                 return null;
         }

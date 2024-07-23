@@ -20,8 +20,10 @@ import javafx.scene.paint.Color;
 import org.controlsfx.control.textfield.TextFields;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.BookBO;
+import org.example.bo.custom.CategoryBO;
 import org.example.dto.BookDto;
 import org.example.dto.Admintm.BooksTm;
+import org.example.dto.CategoryDto;
 import org.example.entity.Branch;
 import org.example.regex.RegexPattern;
 
@@ -45,14 +47,17 @@ public class BookFormController {
     public TableColumn colRemove;
     public JFXTextField txtSearchBar;
     public AnchorPane textInputFiealdRoot;
+    public JFXComboBox bookCategory;
 
     private BookBO bookBO= (BookBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.BOOK);
+    private CategoryBO categoryBO= (CategoryBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.CATEGORY);
 
     private ObservableList<BooksTm> obList;
 
     public void initialize(){
         bookTable.getStylesheets().add("/style/style.css");
         setAvailableStatus();
+        setBookCategory();
         setCellValue();
         getAllBooks();
         searchTable();
@@ -117,6 +122,15 @@ public class BookFormController {
         availabilityStatus.setItems(oblist);
     }
 
+    private void setBookCategory(){
+        ObservableList<String> oblist= FXCollections.observableArrayList();
+        List<CategoryDto> allCategory = categoryBO.getAllCategory();
+        for (CategoryDto dto:allCategory) {
+            oblist.add(dto.getCategoryName());
+        }
+        bookCategory.setItems(oblist);
+    }
+
     public void btnAddBookOnAction(ActionEvent actionEvent) {
         if(isEmptyCheck()){
 
@@ -145,7 +159,7 @@ public class BookFormController {
 
 
                 boolean b = bookBO.addBook(new BookDto(bookId.getText(), bookTitle.getText(), bookAuthor.getText(),
-                        bookGenre.getText(), available));
+                        (String) bookCategory.getValue(), available));
 
                 if (b){
 
@@ -185,12 +199,6 @@ public class BookFormController {
             System.out.println("Book author field is empty");
             return true;
         }
-        if (bookGenre.getText().isEmpty()){
-            bookGenre.requestFocus();
-            bookGenre.setFocusColor(Color.RED);
-            System.out.println("Book genre field is empty");
-            return true;
-        }
         return false;
     }
 
@@ -222,7 +230,7 @@ public class BookFormController {
 
 
                 boolean b = bookBO.updateBook(new BookDto(bookId.getText(), bookTitle.getText(), bookAuthor.getText(),
-                        bookGenre.getText(), available));
+                        (String) bookCategory.getValue(), available));
 
                 if (b) {
                     Image image = new Image("/assest/icon/iconsOk.png");
@@ -251,7 +259,7 @@ public class BookFormController {
         bookId.clear();
         bookTitle.clear();
         bookAuthor.clear();
-        bookGenre.clear();
+        bookCategory.setValue(null);
     }
 
     public void searchTable() {
@@ -287,7 +295,7 @@ public class BookFormController {
                 bookId.setText(bookDto.getBookId());
                 bookTitle.setText(bookDto.getTitle());
                 bookAuthor.setText(bookDto.getAuthor());
-                bookGenre.setText(bookDto.getGenre());
+                bookCategory.setValue(bookDto.getGenre());
                 availabilityStatus.setValue(bookDto.isAvailability());
 
                 Image image=new Image("/assest/icon/iconsOk.png");

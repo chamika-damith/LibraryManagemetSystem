@@ -172,7 +172,7 @@ public class UserFormController {
                     try {
                         Notifications notifications = Notifications.create();
                         notifications.graphic(new ImageView(image));
-                        notifications.text("Book update success");
+                        notifications.text("User update success");
                         notifications.title("Warning");
                         notifications.hideAfter(Duration.seconds(5));
                         notifications.position(Pos.TOP_RIGHT);
@@ -183,7 +183,6 @@ public class UserFormController {
 
                     clearField();
                     getAllUsers();
-                    System.out.println("book update success");
                 }
             }
         }

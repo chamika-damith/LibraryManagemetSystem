@@ -16,7 +16,6 @@
          <children>
             <JFXTextField fx:id="bookTitle" focusColor="#0040ff" labelFloat="true" layoutX="33.0" layoutY="104.0" prefHeight="26.0" prefWidth="295.0" promptText="Title" />
             <JFXTextField fx:id="bookAuthor" focusColor="#0040ff" labelFloat="true" layoutX="32.0" layoutY="181.0" prefHeight="26.0" prefWidth="295.0" promptText="Author" />
-            <JFXTextField fx:id="bookGenre" focusColor="#0040ff" labelFloat="true" layoutX="28.0" layoutY="260.0" prefHeight="26.0" prefWidth="295.0" promptText="Genre" />
             <JFXComboBox fx:id="availabilityStatus" layoutX="31.0" layoutY="342.0" prefHeight="26.0" prefWidth="295.0" promptText="Availability status" />
             <JFXButton layoutX="68.0" layoutY="436.0" onAction="#btnAddBookOnAction" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #5D9C39;" text="Add" textFill="WHITE">
                <font>
@@ -35,6 +34,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
+            <JFXComboBox fx:id="bookCategory" layoutX="31.0" layoutY="263.0" prefHeight="26.0" prefWidth="295.0" promptText="Category" />
          </children>
       </AnchorPane>
       <TableView fx:id="bookTable" layoutX="400.0" layoutY="136.0" prefHeight="566.0" prefWidth="897.0" stylesheets="@../../../style/Table.css">
